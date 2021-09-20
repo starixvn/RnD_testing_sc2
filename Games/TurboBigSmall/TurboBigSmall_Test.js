@@ -27,31 +27,29 @@ describe('TurboBigSmall Game', ()=>{
  it('TC_01_Full_Smoke_Verify can open game by click on game icon at the lobby', async () => {
     await TurboBigSmallFunc.VerifySignInSuccessfully()
     //await TurboBigSmallFunc.checkNavStatisticbar()
+    
   })  
 
  
   it('TC_06_Full_Smoke_Verify Max Bet on Big', async () => {   
+    wsMessageReceived =[]
     await TurboBigSmallFunc.waitUtilNewRound()
     const pos = "Big"
-    const errormsg = `"errorCode":"SB1911","maxBet":2000`
-   await TurboBigSmallFunc.PlaceBet(pos,1000)
-   await TurboBigSmallFunc.PlaceBet(pos,1000)
-   await TurboBigSmallFunc.PlaceBet(pos,1000)
-   await TurboBigSmallFunc.PlaceBet(pos,50,'nowait')
-   await TurboBigSmallFunc.VerifyErrorMessage(errormsg)
-   await TurboBigSmallFunc.CheckSettleBalance()
-   await TurboBigSmallFunc.CheckRoundHistory()
+    const errormsg = `"errorCode":"SB1911","maxBet":3000`
+    await TurboBigSmallFunc.PlaceBet(pos,10)
+    await TurboBigSmallFunc.PlaceBet(pos,5000,'nowait')
+    await TurboBigSmallFunc.VerifyErrorMessage(errormsg)
+    await TurboBigSmallFunc.CheckSettleBalance()
+    await TurboBigSmallFunc.CheckRoundHistory()
 
  }) 
  
  it('TC_07_Full_Smoke_Verify Max Bet on Small', async () => {  
   await TurboBigSmallFunc.waitUtilNewRound()
    const pos = "Small"
-   const errormsg = `"errorCode":"SB1911","maxBet":2000`
-  await TurboBigSmallFunc.PlaceBet(pos,1000)
-  await TurboBigSmallFunc.PlaceBet(pos,1000)
-  await TurboBigSmallFunc.PlaceBet(pos,1000)
-  await TurboBigSmallFunc.PlaceBet(pos,50,'nowait')
+   const errormsg = `"errorCode":"SB1911","maxBet":3000`
+   await TurboBigSmallFunc.PlaceBet(pos,10)
+  await TurboBigSmallFunc.PlaceBet(pos,5000,'nowait')
   await TurboBigSmallFunc.VerifyErrorMessage(errormsg)
   await TurboBigSmallFunc.CheckSettleBalance()
   await TurboBigSmallFunc.CheckRoundHistory()
@@ -135,12 +133,11 @@ describe('TurboBigSmall Game', ()=>{
      await TurboBigSmallFunc.CheckSettleBalance()
   })  
 
-  it('TC_14_Full_Verify Preset Betting [1-50] Chips on Big', async () => {   
+  it('TC_14_Full_Verify Preset Betting [10-200] Chips on Big', async () => {   
     await TurboBigSmallFunc.waitUtilNewRound()
     const Achip =  [10,50,100,200]
     const pos = "Big"
     let _stake =0
-    await TurboBigSmallFunc.waitUtilNewRound()
     for (let i =0 ; i< Achip.length ;i ++){
       await TurboBigSmallFunc.PresetChip(Achip[i])
       _stake = _stake + Achip[i]
@@ -165,9 +162,9 @@ describe('TurboBigSmall Game', ()=>{
     await TurboBigSmallFunc.CheckSettleBalance()
   })
 
-  it('TC_16_Full_Verify Preset Betting [1 -50] Chips on Big', async () => {   
+  it('TC_16_Full_Verify Preset Betting [10-50] Chips on Big', async () => {   
     await TurboBigSmallFunc.waitUtilNewRound()
-    const Achip =  [10,50,100,200]
+    const Achip =  [10,50]
     const pos = "Small"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++){
@@ -193,11 +190,11 @@ describe('TurboBigSmall Game', ()=>{
     await TurboBigSmallFunc.CheckSettleBalance()
   }) 
 
-  it('TC_18_Full_Verify Betting [1-50] on Big with specific Preset Chip + extra Chip on Board', async () => {
+  it('TC_18_Full_Verify Betting [10-50] on Big with specific Preset Chip + extra Chip on Board', async () => {
     //Test senario: Set Specific Preset Chip Then Place Bet extra chip-board on Big
     //Verify all preset and chips on board can be bet success   
     await TurboBigSmallFunc.waitUtilNewRound()
-    const Achip =  [10,50,100,200]
+    const Achip =  [10,50]
     const pos = "Big"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++){
@@ -209,7 +206,7 @@ describe('TurboBigSmall Game', ()=>{
          await TurboBigSmallFunc.CheckSettleBalance()
   }) 
 
-  it('TC_19_Full_Verify Betting [100-500] on Big with specific Preset Chip + extra Chip on Board', async () => {
+  it('TC_19_Full_Verify Betting [1000-500] on Big with specific Preset Chip + extra Chip on Board', async () => {
     //Test senario: Set Specific Preset Chip Then Place Bet extra chip-board on Big
     //Verify all preset and chips on board can be bet success   
     await TurboBigSmallFunc.waitUtilNewRound()
@@ -225,11 +222,11 @@ describe('TurboBigSmall Game', ()=>{
          await TurboBigSmallFunc.CheckSettleBalance()
   }) 
 
-  it('TC_20_Full_Verify Betting [1-50] on Small with specific Preset Chip + extra Chip on Board', async () => {
+  it('TC_20_Full_Verify Betting [10-50] on Small with specific Preset Chip + extra Chip on Board', async () => {
     //Test senario: Set Specific Preset Chip Then Place Bet extra chip-board on Small
     //Verify all preset and chips on board can be bet success   
     await TurboBigSmallFunc.waitUtilNewRound()
-    const Achip =  [10,50,100,200]
+    const Achip =  [10,50]
     const pos = "Small"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++){
@@ -241,7 +238,7 @@ describe('TurboBigSmall Game', ()=>{
          await TurboBigSmallFunc.CheckSettleBalance()
   }) 
 
-  it('TC_21_Full_Verify Betting [100-500] on Small with specific Preset Chip + extra Chip on Board', async () => {
+  it('TC_21_Full_Verify Betting [1000-500] on Small with specific Preset Chip + extra Chip on Board', async () => {
     //Test senario: Set Specific Preset Chip Then Place Bet extra chip-board on Small
     //Verify all preset and chips on board can be bet success  
     await TurboBigSmallFunc.waitUtilNewRound()
@@ -257,11 +254,11 @@ describe('TurboBigSmall Game', ()=>{
          await TurboBigSmallFunc.CheckSettleBalance()
   }) 
 
-    it('TC_22_Full_Verify Betting [1-50] on Big with accumulate presetchip', async () => {
+    it('TC_22_Full_Verify Betting [10-50] on Big with accumulate presetchip', async () => {
     //Test senario: Set Preset Chip Then Place Bet on Big, Value of preset chip will be accmulated
     //Verify all preset and chips on board can be bet success   
     await TurboBigSmallFunc.waitUtilNewRound()
-    const Achip =  [10,50,100,200]
+    const Achip =  [10,50]
     const pos = "Big"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++){
@@ -273,7 +270,7 @@ describe('TurboBigSmall Game', ()=>{
     await TurboBigSmallFunc.CheckSettleBalance()
   }) 
 
-  it('TC_23_Full_Verify Betting [100 -500] on Big with accumulate presetchip', async () => {
+  it('TC_23_Full_Verify Betting [1000 -500] on Big with accumulate presetchip', async () => {
     //Test senario: Set Preset Chip Then Place Bet on Big, Value of preset chip will be accmulated
     //Verify all preset and chips on board can be bet success   
     await TurboBigSmallFunc.waitUtilNewRound()
@@ -289,11 +286,11 @@ describe('TurboBigSmall Game', ()=>{
     await TurboBigSmallFunc.CheckSettleBalance()
   }) 
 
-  it('TC_24_Full_Verify Betting [1-50] on Small with accumulate presetchip', async () => {
+  it('TC_24_Full_Verify Betting [10-50] on Small with accumulate presetchip', async () => {
     //Test senario: Set Preset Chip Then Place Bet on Big, Value of preset chip will be accmulated
     //Verify all preset and chips on board can be bet success   
     await TurboBigSmallFunc.waitUtilNewRound()
-    const Achip =  [10,50,100,200]
+    const Achip =  [10,50]
     const pos = "Small"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++){
@@ -305,7 +302,7 @@ describe('TurboBigSmall Game', ()=>{
     await TurboBigSmallFunc.CheckSettleBalance()
   }) 
 
-  it('TC_25_Full_Verify Betting [100-500] on Small with accumulate presetchip and Result page', async () => {
+  it('TC_25_Full_Verify Betting [1000-500] on Small with accumulate presetchip and Result page', async () => {
     //Test senario: Set Preset Chip Then Place Bet on Big, Value of preset chip will be accmulated
     //Verify all preset and chips on board can be bet success   
     await TurboBigSmallFunc.waitUtilNewRound()
