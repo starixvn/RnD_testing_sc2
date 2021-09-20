@@ -57,3 +57,13 @@
 #     - echo "Cleaning up"
 #     - rm -rf "%CACHE_PATH%/%CI_PIPELINE_ID%"
 #   when: always
+
+
+
+
+test:
+  stage: test
+  tags:
+    - docker-automation-test
+  script:
+    - echo OK
