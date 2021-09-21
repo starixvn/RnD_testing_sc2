@@ -29,13 +29,13 @@ export const verifyBetChoice = async() => {
     _result = await utils.findImage(SedieLocator.White4)
     expect(_result.Val).to.equal(true)
 }
-export const selectChip = async(_chip=1)=>{
+export const selectChip = async(_chip=10)=>{
     /*  Param Explained:
         _chip : input chip amount will be selected, by default = 1
     */
     try {
-        const _chipbar1 = [1,5,10,50,100]
-        const _chipbar2 = [200,500,1000,2000]
+        const _chipbar1 = [10,20,50,100,200]
+        const _chipbar2 = [500,1000,5000,10000,20000]
         if (_chipbar2.includes(_chip) === true){
             await utils.swipe(SedieLocator.ChipBroad.x,SedieLocator.ChipBroad.y,0,SedieLocator.ChipBroad.y)
             await utils.sleep(2000)
@@ -50,7 +50,7 @@ export const selectChip = async(_chip=1)=>{
         console.log(error.message)
     }
 }
-export const placeBet = async(_choice,_chip=1) => {
+export const placeBet = async(_choice,_chip=10) => {
     /*  Param Explained:
         _choice : input choice option will be selected, ex: 'Even' , 'Odd', '4Red' ....
         _chip : input chip amount will be selected, by default = 1
@@ -107,23 +107,28 @@ export const verifyMaxBet = async(_choice) =>{
         // Wait to new round
         await utils.sleep(9000)
         await placeBet("Even")
-        await selectChip(2000)
+        await selectChip(20000)
         //flag = await utils.betProcess(SedieLocator.Odd.x, SedieLocator.Odd.y, `42/user/xocxoc,["XocXoc",{"endBet":-1,"betChoice":"odd","notice":"Tổng tiền cược tối đa ở phiên này là 2,000"}]`)
-        flag = await utils.betProcess(SedieLocator.Odd.x, SedieLocator.Odd.y, `"errorCode":"SB1910","maxBet":2000`)
-        await utils.shouldBeEqual(flag.Val,true,'Verify msg: Tổng tiền cược tối đa ở phiên này là 2,000')
-    }
-    else if (_choice === 'Red4' || _choice === 'White4'){
+        flag = await utils.betProcess(SedieLocator.Odd.x, SedieLocator.Odd.y, `"errorCode":"SB1910","maxBet":20000`)
+        await utils.shouldBeEqual(flag.Val,true,'Verify msg: Tổng tiền cược tối đa ở phiên này là 20,000')
+    } else if (_choice === 'Red4' || _choice === 'White4'){
         wsMessageReceived = []
-        await selectChip(500)
+        await selectChip(20000)
         // flag = await utils.betProcess(SedieLocator[`${_choice}`].x, SedieLocator[`${_choice}`].y, `42/user/xocxoc,["XocXoc",{"endBet":-1,"betChoice":"${lowchoice}","notice":"Tiền cược tối đa ở cửa này là 500"}]`)
-        flag = await utils.betProcess(SedieLocator[`${_choice}`].x, SedieLocator[`${_choice}`].y, `"errorCode":"SB1910","maxBet":500`)
-        await utils.shouldBeEqual(flag.Val,true,'Verify msg: Tiền cược tối đa ở cửa này là 500')
-    } else {
-        wsMessageReceived = []
-        await selectChip(2000)
-        // flag = await utils.betProcess(SedieLocator[`${_choice}`].x, SedieLocator[`${_choice}`].y, `42/user/xocxoc,["XocXoc",{"endBet":-1,"betChoice":"${lowchoice}","notice":"Tiền cược tối đa ở cửa này là 2,000"}]`)
         flag = await utils.betProcess(SedieLocator[`${_choice}`].x, SedieLocator[`${_choice}`].y, `"errorCode":"SB1910","maxBet":2000`)
         await utils.shouldBeEqual(flag.Val,true,'Verify msg: Tiền cược tối đa ở cửa này là 2,000')
+    } else if (_choice === 'Red3' || _choice === 'Red2' || _choice === 'White3' ){
+        wsMessageReceived = []
+        await selectChip(20000)
+        // flag = await utils.betProcess(SedieLocator[`${_choice}`].x, SedieLocator[`${_choice}`].y, `42/user/xocxoc,["XocXoc",{"endBet":-1,"betChoice":"${lowchoice}","notice":"Tiền cược tối đa ở cửa này là 500"}]`)
+        flag = await utils.betProcess(SedieLocator[`${_choice}`].x, SedieLocator[`${_choice}`].y, `"errorCode":"SB1910","maxBet":10000`)
+        await utils.shouldBeEqual(flag.Val,true,'Verify msg: Tiền cược tối đa ở cửa này là 10,000')
+    } else {
+        wsMessageReceived = []
+        await selectChip(20000)
+        // flag = await utils.betProcess(SedieLocator[`${_choice}`].x, SedieLocator[`${_choice}`].y, `42/user/xocxoc,["XocXoc",{"endBet":-1,"betChoice":"${lowchoice}","notice":"Tiền cược tối đa ở cửa này là 2,000"}]`)
+        flag = await utils.betProcess(SedieLocator[`${_choice}`].x, SedieLocator[`${_choice}`].y, `"errorCode":"SB1910","maxBet":20000`)
+        await utils.shouldBeEqual(flag.Val,true,'Verify msg: Tiền cược tối đa ở cửa này là 20,000')
     }
 }
 export const getBalance = async() => {
@@ -177,7 +182,7 @@ const getUserResult = async() => {
     }
 }
 
-export const verifySettlement = async(_choice,_chip=1,_saveResult=false) => {
+export const verifySettlement = async(_choice,_chip=10,_saveResult=false) => {
     /*  Param Explained:
         _choice : input choice option will be selected, ex: 'Even' , 'Odd', '4Red' ....
         _chip : input chip amount will be selected, by default = 1

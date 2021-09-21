@@ -62,12 +62,12 @@ describe('Sedie Game', ()=>{
     await SedieFunc.verifyBetChip()
   })
 
-  it('TC_011_Full_Verify betting by chip 5', async() =>{
-    await SedieFunc.placeBet("Even",5)
+  it('TC_011_Full_Verify betting by chip 10', async() =>{
+    await SedieFunc.placeBet("Even",10)
   })
 
-  it('TC_012_Full_Verify betting by chip 10', async() =>{
-    await SedieFunc.placeBet("Even",10)
+  it('TC_012_Full_Verify betting by chip 20', async() =>{
+    await SedieFunc.placeBet("Even",20)
   })
 
   it('TC_013_Full_Verify betting by chip 50', async() =>{
@@ -90,8 +90,8 @@ describe('Sedie Game', ()=>{
     await SedieFunc.placeBet("Even",1000)
   })
 
-  it('TC_018_Full_Verify betting by chip 2000', async() =>{
-    await SedieFunc.placeBet("Even",2000)
+  it('TC_018_Full_Verify betting by chip 5000', async() =>{
+    await SedieFunc.placeBet("Even",5000)
   })
 
   it('TC_019_Full_Verify betting at Block Betting Time', async() =>{
@@ -135,11 +135,11 @@ describe('Sedie Game', ()=>{
   })
   
   it('TC_029_Full_Verify Settlement on choice Even', async() =>{  
-    await SedieFunc.verifySettlement("Even",5)
+    await SedieFunc.verifySettlement("Even",10)
   })
 
   it('TC_030_Full_Verify Settlement on choice Odd', async() =>{  
-    await SedieFunc.verifySettlement("Odd",10)
+    await SedieFunc.verifySettlement("Odd",200)
   })
 
   it('TC_031_Full_Verify Settlement on choice Red4', async() =>{  
@@ -151,7 +151,7 @@ describe('Sedie Game', ()=>{
   })
 
   it('TC_033_Full_Verify Settlement on choice Red2', async() =>{  
-    await SedieFunc.verifySettlement("Red2",1)
+    await SedieFunc.verifySettlement("Red2",10)
   })
 
   it('TC_034_Full_Verify Settlement on choice White3', async() =>{  
