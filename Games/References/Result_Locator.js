@@ -2,7 +2,7 @@ export const ResultLocator_vn = {
     gameName : {
         Sedie : 'Xóc Đĩa',
         MiniSedie : 'MiniSeDie',
-        VipSedie : 'VipSeDie',
+        VipSedie : 'Xóc Đĩa VIP',
         BigSmall : 'Tài Xỉu',
         BigSmallTurbo : 'Tài Xỉu Siêu Tốc',
         OddEven : 'Chẵn Lẻ',
