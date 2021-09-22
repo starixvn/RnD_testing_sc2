@@ -62,10 +62,10 @@
         ]
     },
     "scripts": {
-        "CI_SelGame_Smoke": "cross-var mocha --timeout 0 Games/VIpSedie/*_Test.js -r @babel/register --file ./Setup.js  --fgrep Smoke_ --file ./Teardown.js  --reporter mochawesome --reporter-options reportDir=Report/$npm_config_lang ",
-        "CI_SelGame_Full": "cross-var mocha --timeout 0 Games/VIpSedie/*_Test.js -r @babel/register --file ./Setup.js  --fgrep Full_ --file ./Teardown.js  --reporter mochawesome --reporter-options reportDir=Report/$npm_config_lang ",
-        "Win_SelGame": "cross-var mocha --timeout 0 Games/VIpSedie/*_Test.js -r @babel/register --file ./Setup.js --file ./Teardown.js  --reporter mochawesome --reporter-options reportDir=Report/$npm_config_lang",
-        "Win_SelGameSub": "cross-var mocha --timeout 0 Games/VIpSediee/*_%npm_config_Sub%Test.js -r @babel/register --file ./Setup.js --file ./Teardown.js  --reporter mochawesome --reporter-options reportDir=Report/$npm_config_lang ",
+        "CI_SelGame_Smoke": "cross-var mocha --timeout 0 Games/MiniSedie/*_Test.js -r @babel/register --file ./Setup.js  --fgrep Smoke_ --file ./Teardown.js  --reporter mochawesome --reporter-options reportDir=Report/$npm_config_lang ",
+        "CI_SelGame_Full": "cross-var mocha --timeout 0 Games/MiniSedie/*_Test.js -r @babel/register --file ./Setup.js  --fgrep Full_ --file ./Teardown.js  --reporter mochawesome --reporter-options reportDir=Report/$npm_config_lang ",
+        "Win_SelGame": "cross-var mocha --timeout 0 Games/MiniSedie/*_Test.js -r @babel/register --file ./Setup.js --file ./Teardown.js  --reporter mochawesome --reporter-options reportDir=Report/$npm_config_lang",
+        "Win_SelGameSub": "cross-var mocha --timeout 0 Games/MiniSedie/*_%npm_config_Sub%Test.js -r @babel/register --file ./Setup.js --file ./Teardown.js  --reporter mochawesome --reporter-options reportDir=Report/$npm_config_lang ",
         "exportStatus": "cross-var mocha --timeout 0 Games/MarkTestCase/MarkTestCase.js -r @babel/register",
         "sendResultToTelegram": "cross-var mocha --timeout 0 Games/SendResultToTelegram/*.js -r @babel/register"
     }

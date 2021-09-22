@@ -56,36 +56,36 @@ describe('MiniSedie Game', ()=>{
     await MiniSedieFunc.verifyBetChip()
   })
 
-  it('TC_011_Full_Verify betting by chip 5', async() =>{
-    await MiniSedieFunc.placeBet("Even",5)
+  it('TC_011_Full_Verify betting by chip 20', async() =>{
+    await MiniSedieFunc.placeBet("Even",20)
   })
 
-  it('TC_012_Full_Verify betting by chip 10', async() =>{
-    await MiniSedieFunc.placeBet("Even",10)
-  })
-
-  it('TC_013_Full_Verify betting by chip 50', async() =>{
+  it('TC_012_Full_Verify betting by chip 50', async() =>{
     await MiniSedieFunc.placeBet("Even",50)
   })
 
-  it('TC_014_Full_Verify betting by chip 100', async() =>{
+  it('TC_013_Full_Verify betting by chip 100', async() =>{
     await MiniSedieFunc.placeBet("Even",100)
   })
 
-  it('TC_015_Full_Verify betting by chip 200', async() =>{
+  it('TC_014_Full_Verify betting by chip 200', async() =>{
     await MiniSedieFunc.placeBet("Even",200)
   })
 
-  it('TC_016_Full_Verify betting by chip 500', async() =>{
+  it('TC_015_Full_Verify betting by chip 500', async() =>{
     await MiniSedieFunc.placeBet("Even",500)
   })
 
-  it('TC_017_Full_Verify betting by chip 1000', async() =>{
+  it('TC_016_Full_Verify betting by chip 1000', async() =>{
     await MiniSedieFunc.placeBet("Even",1000)
   })
 
-  it('TC_018_Full_Verify betting by chip 2000', async() =>{
-    await MiniSedieFunc.placeBet("Even",2000)
+  it('TC_017_Full_Verify betting by chip 5000', async() =>{
+    await MiniSedieFunc.placeBet("Even",5000)
+  })
+
+  it('TC_018_Full_Verify betting by chip 10000', async() =>{
+    await MiniSedieFunc.placeBet("Even",10000)
   })
 
   it('TC_019_Full_Verify betting at Block Betting Time', async() =>{
@@ -125,15 +125,15 @@ describe('MiniSedie Game', ()=>{
   })
   
   it('TC_029_Full_Verify Settlement on choice Even', async() =>{  
-    await MiniSedieFunc.verifySettlement("Even",5)
+    await MiniSedieFunc.verifySettlement("Even",20)
   })
 
   it('TC_030_Full_Verify Settlement on choice Odd', async() =>{  
-    await MiniSedieFunc.verifySettlement("Odd",10)
+    await MiniSedieFunc.verifySettlement("Odd",50)
   })
 
   it('TC_031_Full_Verify Settlement on choice Red4', async() =>{  
-    await MiniSedieFunc.verifySettlement("Red4",200)
+    await MiniSedieFunc.verifySettlement("Red4",100)
   })
 
   it('TC_032_Full_Verify Settlement on choice Red3', async() =>{  

@@ -36,13 +36,13 @@ export const verifyBetChoice = async() => {
     _result = await utils.findImage(MiniSedieLocator.White4)
     expect(_result.Val).to.equal(true)
 }
-export const selectChip = async(_chip=1)=>{
+export const selectChip = async(_chip=10)=>{
     /*  Param Explained:
         _chip : input chip amount will be selected, by default = 1
     */
-    try {
-        const _chipbar1 = [1,5,10,50,100]
-        const _chipbar2 = [200,500,1000,2000]
+    try { 
+        const _chipbar1 = [10,20,50,100,200]
+        const _chipbar2 = [500,1000,5000,10000,20000]
         if (_chipbar2.includes(_chip) === true){
             await utils.swipe(MiniSedieLocator.ChipBroad.x,MiniSedieLocator.ChipBroad.y,0,MiniSedieLocator.ChipBroad.y)
             await utils.sleep(2000)
@@ -57,7 +57,7 @@ export const selectChip = async(_chip=1)=>{
         console.log(error.message)
     }
 }
-export const placeBet = async(_choice,_chip=1) => {
+export const placeBet = async(_choice,_chip=10) => {
     /*  Param Explained:
         _choice : input choice option will be selected, ex: 'Even' , 'Odd', '4Red' ....
         _chip : input chip amount will be selected, by default = 1
@@ -94,19 +94,26 @@ export const verifyMaxBet = async(_choice) =>{
         // Wait to new round
         await utils.sleep(9000)
         await placeBet("Even")
-        await selectChip(2000)
-        flag = await utils.betProcess(MiniSedieLocator.Odd.x, MiniSedieLocator.Odd.y, `"errorCode":"SB1910","maxBet":2000`)
+        await selectChip(20000)
+        flag = await utils.betProcess(MiniSedieLocator.Odd.x, MiniSedieLocator.Odd.y, `"errorCode":"SB1910","maxBet":20000`)
         await utils.shouldBeEqual(flag.Val,true)
     }
     else if (_choice === 'Red4' || _choice === 'White4'){
         wsMessageReceived = []
-        await selectChip(500)
-        flag = await utils.betProcess(MiniSedieLocator[`${_choice}`].x, MiniSedieLocator[`${_choice}`].y, `"errorCode":"SB1910","maxBet":500`)
-        await utils.shouldBeEqual(flag.Val,true)
-    } else {
-        wsMessageReceived = []
-        await selectChip(2000)
+        await selectChip(5000)
         flag = await utils.betProcess(MiniSedieLocator[`${_choice}`].x, MiniSedieLocator[`${_choice}`].y, `"errorCode":"SB1910","maxBet":2000`)
+        await utils.shouldBeEqual(flag.Val,true)
+    }
+    else if (_choice === 'Red3' || _choice === 'White3'){
+        wsMessageReceived = []
+        await selectChip(10000)
+        flag = await utils.betProcess(MiniSedieLocator[`${_choice}`].x, MiniSedieLocator[`${_choice}`].y, `"errorCode":"SB1910","maxBet":10000`)
+        await utils.shouldBeEqual(flag.Val,true)
+    } 
+    else {
+        wsMessageReceived = []
+        await selectChip(20000)
+        flag = await utils.betProcess(MiniSedieLocator[`${_choice}`].x, MiniSedieLocator[`${_choice}`].y, `"errorCode":"SB1910","maxBet":20000`)
         await utils.shouldBeEqual(flag.Val,true)
     }
 }
@@ -159,7 +166,7 @@ const getUserResult = async() => {
         return null
     }
 }
-export const verifySettlement = async(_choice,_chip=1,_saveResult=false) => {
+export const verifySettlement = async(_choice,_chip=10,_saveResult=false) => {
     /*  Param Explained:
         _choice : input choice option will be selected, ex: 'Even' , 'Odd', '4Red' ....
         _chip : input chip amount will be selected, by default = 1
@@ -329,6 +336,7 @@ export const openGuide = async() => {
 
 export const closeGuide = async() => {
     await utils.clickPos(MiniSedieLocator.GuideClose.x, MiniSedieLocator.GuideClose.y)
+    await utils.sleep(3000)
 }
 
 export const verifyGuideContent = async()=> {
@@ -339,13 +347,14 @@ export const verifyGuideContent = async()=> {
     let _AcheckImage = [ MiniSedieLocator.Guide.ImageCompare1, MiniSedieLocator.Guide.ImageCompare2, MiniSedieLocator.Guide.ImageCompare3,
         MiniSedieLocator.Guide.ImageCompare4, MiniSedieLocator.Guide.ImageCompare5] 
     for(let t = 0; t< _AcheckImage.length; t++){
-        // // Get Screen Shot for Guide content
+        // Get Screen Shot for Guide content
         // await page.screenshot({path: _AcheckImage[t] ,clip:{
         // x: MiniSedieLocator.Guide.left,
         //     y: MiniSedieLocator.Guide.top,
         // width: MiniSedieLocator.Guide.width,
         // height: MiniSedieLocator.Guide.height}})
         // await utils.swipe(fx, fy, fx, ty) 
+        // End
         let _result = await utils.findImage(
             _AcheckImage[t],
             MiniSedieLocator.Guide
@@ -357,14 +366,14 @@ export const verifyGuideContent = async()=> {
 
 export const verifyBetChip = async() => {
     await selectChip()
-    // // Using for Capture ScreenShot
+    // Using for Capture ScreenShot
     // await utils.CaptureSubImageToFile(MiniSedieLocator.ChipBroad.ImageCompare1,
     //     MiniSedieLocator.ChipBroad.left, MiniSedieLocator.ChipBroad.top, MiniSedieLocator.ChipBroad.width, MiniSedieLocator.ChipBroad.height)
     // await utils.swipe(MiniSedieLocator.ChipBroad.x,MiniSedieLocator.ChipBroad.y,0,MiniSedieLocator.ChipBroad.y)
     // await utils.sleep(3000)
     // await utils.CaptureSubImageToFile(MiniSedieLocator.ChipBroad.ImageCompare2,
     //     MiniSedieLocator.ChipBroad.left, MiniSedieLocator.ChipBroad.top, MiniSedieLocator.ChipBroad.width, MiniSedieLocator.ChipBroad.height)
-    // // End
+    // End
     let _result = await utils.findImage(MiniSedieLocator.ChipBroad.ImageCompare1, MiniSedieLocator.ChipBroad)
     expect(_result.Val).to.equal(true)
     await utils.swipe(MiniSedieLocator.ChipBroad.x,MiniSedieLocator.ChipBroad.y,0,MiniSedieLocator.ChipBroad.y)
@@ -387,6 +396,7 @@ export const verifyHistoryPopup = async() => {
 export const closeHistory = async() => {
     await utils.clickPos(MiniSedieLocator.HistoryClose.x, MiniSedieLocator.HistoryClose.y)
     await verifyStatistic()
+    await utils.sleep(3000)
 }
 
 export const verifyDBCuoc = async(_resultOnWeb) => {
