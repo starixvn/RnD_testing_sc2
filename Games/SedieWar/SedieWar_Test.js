@@ -102,36 +102,36 @@ describe('SedieWar Game', ()=>{
       await SedieWarFunc.verifyBetChip()
   })
 
-  it('TC_021_Full__Verify betting by chip 5', async() =>{
-    await SedieWarFunc.placeBet("Even",5)
+  it('TC_021_Full__Verify betting by chip 20', async() =>{
+    await SedieWarFunc.placeBet("Even",20)
   })
 
-  it('TC_022_Full_Verify betting by chip 10', async() =>{
-    await SedieWarFunc.placeBet("Even",10)
-  })
-
-  it('TC_023_Full_Verify betting by chip 50', async() =>{
+  it('TC_022_Full_Verify betting by chip 50', async() =>{
     await SedieWarFunc.placeBet("Even",50)
   })
 
-  it('TC_024_Full_Verify betting by chip 100', async() =>{
+  it('TC_023_Full_Verify betting by chip 100', async() =>{
     await SedieWarFunc.placeBet("Even",100)
   })
 
-  it('TC_025_Full_Verify betting by chip 200', async() =>{
+  it('TC_024_Full_Verify betting by chip 200', async() =>{
     await SedieWarFunc.placeBet("Even",200)
   })
 
-  it('TC_026_Full_Verify betting by chip 500', async() =>{
+  it('TC_025_Full_Verify betting by chip 500', async() =>{
     await SedieWarFunc.placeBet("Even",500)
   })
 
-  it('TC_027_Full_Verify betting by chip 1000', async() =>{
+  it('TC_026_Full_Verify betting by chip 1000', async() =>{
     await SedieWarFunc.placeBet("Even",1000)
   })
 
-  it('TC_028_Full_Verify betting by chip 2000', async() =>{
-    await SedieWarFunc.placeBet("Even",2000)
+  it('TC_027_Full_Verify betting by chip 5000', async() =>{
+    await SedieWarFunc.placeBet("Even",5000)
+  })
+
+  it('TC_028_Full_Verify betting by chip 10000', async() =>{
+    await SedieWarFunc.placeBet("Even",10000)
   })
 
   
@@ -216,7 +216,7 @@ describe('SedieWar Game', ()=>{
   })
 
   it('TC_049_Full_Verify Settlement on Player Choice', async() =>{
-      await SedieWarFunc.verifySettlement("Player",5)
+      await SedieWarFunc.verifySettlement("Player",50)
   })
   
   it('TC_050_Full_Verify Settlement on Banker Choice', async() =>{
@@ -240,7 +240,7 @@ describe('SedieWar Game', ()=>{
   })
 
   it('TC_055_Full_Verify Settlement on PlayerOdd Choice', async() =>{
-      await SedieWarFunc.verifySettlement("PlayerOdd",2000)
+      await SedieWarFunc.verifySettlement("PlayerOdd",1000)
   })
 
   it('TC_056_Full_Verify Settlement on PlayerRed4 Choice', async() =>{
@@ -297,7 +297,7 @@ describe('SedieWar Game', ()=>{
 
   it('TC_073_Smoke_Verify Settlement all Bet Choices', async()=>{
     let _choice = ['Player','Banker','Tie','Even','Odd','PlayerEven','PlayerOdd','PlayerRed4','PlayerRed3','PlayerWhite3','PlayerWhite4','BankerEven','BankerOdd','BankerRed4','BankerRed3','BankerWhite3','BankerWhite4']
-     await SedieWarFunc.verifySettlementMultipleChoices(_choice,1)
+     await SedieWarFunc.verifySettlementMultipleChoices(_choice,10)
   })
 
   it('TC_068_Full_Smoke_Verify Home', async() => {
