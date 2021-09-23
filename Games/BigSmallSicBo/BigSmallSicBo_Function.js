@@ -83,8 +83,8 @@ export const VerifySignInSuccessfully = async() => {
 
 //Sliding chip bar and select chip icon
 export const Sliding_Select_Chip = async(_chip) => {
-  const _chipbar1 = [1,5,10,50,100]
-  const _chipbar2 = [200,500,1000,2000]
+  const _chipbar1 = [10,20,50,100,200,500]
+  const _chipbar2 = ['1k','5k','10k','20k']
   if (_chipbar2.includes(_chip) === true){
     await utils.swipe(900,630,0,630)
     await utils.sleep(50)
@@ -93,7 +93,8 @@ export const Sliding_Select_Chip = async(_chip) => {
     await utils.swipe(405,630,1000,630)
     await utils.sleep(50)
    }
-    await utils.clickPos(BigSmallSicboLocator[`Chip${_chip}`].x,BigSmallSicboLocator[`Chip${_chip}`].y)  
+   await page.mouse.click(BigSmallSicboLocator[`Chip${_chip}`].x,BigSmallSicboLocator[`Chip${_chip}`].y)
+    // await utils.clickPos(BigSmallSicboLocator[`Chip${_chip}`].x,BigSmallSicboLocator[`Chip${_chip}`].y)  
   }
 
 
