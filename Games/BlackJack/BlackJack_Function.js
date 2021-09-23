@@ -269,20 +269,20 @@ export const VerifyGuideContent = async() => {
 
 export const VerifyDefaultState = async() => {
 //Check default pos and stakes, min & maxbet  
-// await utils.CaptureSubImageToFile(BlackJackLocator.DefaultState)
-  const _result= await utils.findImage(BlackJackLocator.DefaultState.ImageCompare,BlackJackLocator.DefaultState)
-await utils.shouldBeEqual(_result.Val,true)    
+await utils.CaptureSubImageToFile(BlackJackLocator.DefaultState)
+//   const _result= await utils.findImage(BlackJackLocator.DefaultState.ImageCompare,BlackJackLocator.DefaultState)
+// await utils.shouldBeEqual(_result.Val,true)    
 
   //Check default Chip
-  // await utils.CaptureSubImageToFile(BlackJackLocator.DefaultChip)
-  const _chip= await utils.findImage(BlackJackLocator.DefaultChip.ImageCompare,BlackJackLocator.DefaultChip)
-await utils.shouldBeEqual(_chip.Val,true)  
+  await utils.CaptureSubImageToFile(BlackJackLocator.DefaultChip)
+//   const _chip= await utils.findImage(BlackJackLocator.DefaultChip.ImageCompare,BlackJackLocator.DefaultChip)
+// await utils.shouldBeEqual(_chip.Val,true)  
 }
 
 //Sliding chip bar and select chip icon
 export const Sliding_Select_Chip = async(_chip) => {
-  const _chipbar1 = [1,5,10,50,100]
-  const _chipbar2 = [200,500,1000,2000]
+  const _chipbar1 = [10,20,50,100,200]
+  const _chipbar2 = [500,'1k','2k','5k','20k']
   if (_chipbar2.includes(_chip) === true){
     await utils.swipe(950,630,0,630)
     await utils.sleep(500)
@@ -305,13 +305,14 @@ export const VerifyPosStake = async(_pos,_stake) => {
     //   y: BlackJackLocator[poststake].top,
     //  width: BlackJackLocator[poststake].width,
     //  height: BlackJackLocator[poststake].height}})
+    await utils.CaptureSubImageToFile()
     const _result = await utils.findImage(pathImageCompare + `Stake${_pos}` + path.sep  + `${_stake}.png`,BlackJackLocator[poststake])
     await utils.shouldBeEqual(_result.Val,true)    
 }
 
 
 export const VerifyBetBlance = async(_stake) => {
-    //   await page.screenshot({path:`${_stake}.png`,clip:{x: BlackJackLocator.Stake.left,
+    //   await page.screenshot({path:pathImageCompare + 'BetBalance' + path.sep  + `${_stake}.png`,clip:{x: BlackJackLocator.Stake.left,
     //   y: BlackJackLocator.Stake.top,
     //  width: BlackJackLocator.Stake.width,
     //  height: BlackJackLocator.Stake.height}})
@@ -321,7 +322,7 @@ export const VerifyBetBlance = async(_stake) => {
 
 
 export const VerifyChipColor_Pos2 = async(_chip) => {
-  //   await page.screenshot({path:`${_chip}.png`,clip:{x: BlackJackLocator.Pos2.left,
+  //   await page.screenshot({path:pathImageCompare + 'ChipColorPos2' + path.sep  + `${_chip}.png`,clip:{x: BlackJackLocator.Pos2.left,
   //   y: BlackJackLocator.Pos2.top,
   //  width: BlackJackLocator.Pos2.width,
   //  height: BlackJackLocator.Pos2.height}})
