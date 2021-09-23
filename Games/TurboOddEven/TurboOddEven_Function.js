@@ -214,14 +214,19 @@ export const SelectPos = async(_pos) => {
 
 //Preset Chip
 export const PresetChip = async(_chip,_clear='clear') => {
-  await utils.clickPos(TurboOddEvenLocator.Preset.x,TurboOddEvenLocator.Preset.y)
+  await page.mouse.click(TurboOddEvenLocator.Preset.x,TurboOddEvenLocator.Preset.y)
+  // await utils.clickPos(TurboOddEvenLocator.Preset.x,TurboOddEvenLocator.Preset.y)
   const _prechip = `PresetChip${_chip}`
   //Clear preset chip --> return 0
   if (_clear == 'clear'){
     await ClearPresetChip()
   }
-  await utils.clickPos(TurboOddEvenLocator[_prechip].x,TurboOddEvenLocator[_prechip].y)
-  await utils.clickPos(TurboOddEvenLocator.PresetAccept.x,TurboOddEvenLocator.PresetAccept.y)//click Accept
+  await utils.sleep(300)
+  await page.mouse.click(TurboOddEvenLocator[_prechip].x,TurboOddEvenLocator[_prechip].y)
+  await page.mouse.click(TurboOddEvenLocator.PresetAccept.x,TurboOddEvenLocator.PresetAccept.y)
+  await utils.sleep(300)
+  // await utils.clickPos(TurboOddEvenLocator[_prechip].x,TurboOddEvenLocator[_prechip].y)
+  // await utils.clickPos(TurboOddEvenLocator.PresetAccept.x,TurboOddEvenLocator.PresetAccept.y)//click Accept
 }
 
 //Clear Preset Chip
