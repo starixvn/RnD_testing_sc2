@@ -32,10 +32,9 @@ describe('TurboOddEven Game', ()=>{
   it('TC_06_Full_Smoke_Verify Max Bet on Odd', async () => {
     await TurboOddEvenFunc.waitUtilNewRound()
     const pos = "Odd"
-    const errormsg =  `"errorCode":"SB1911","maxBet":2000`
-   await TurboOddEvenFunc.PlaceBet(pos,1000)
-   await TurboOddEvenFunc.PlaceBet(pos,1000)
-   await TurboOddEvenFunc.PlaceBet(pos,5,'nowait')
+    const errormsg =  `"errorCode":"SB1911","maxBet":3000`
+   await TurboOddEvenFunc.PlaceBet(pos,10)
+   await TurboOddEvenFunc.PlaceBet(pos,5000,'nowait')
    await TurboOddEvenFunc.VerifyErrorMessage(errormsg)
    await TurboOddEvenFunc.CheckSettleBalance()
    await TurboOddEvenFunc.CheckRoundHistory()
@@ -46,10 +45,9 @@ describe('TurboOddEven Game', ()=>{
  it('TC_07_Full_Smoke_Verify Max Bet on Even', async () => { 
   await TurboOddEvenFunc.waitUtilNewRound()
    const pos = "Even"
-   const errormsg =  `"errorCode":"SB1911","maxBet":2000`
-  await TurboOddEvenFunc.PlaceBet(pos,1000)
-  await TurboOddEvenFunc.PlaceBet(pos,1000)
-  await TurboOddEvenFunc.PlaceBet(pos,5,'nowait')
+   const errormsg =  `"errorCode":"SB1911","maxBet":3000`
+  await TurboOddEvenFunc.PlaceBet(pos,10)
+  await TurboOddEvenFunc.PlaceBet(pos,5000,'nowait')
   await TurboOddEvenFunc.VerifyErrorMessage(errormsg)
   await TurboOddEvenFunc.CheckSettleBalance()
   await TurboOddEvenFunc.CheckRoundHistory()
@@ -60,9 +58,9 @@ describe('TurboOddEven Game', ()=>{
     await TurboOddEvenFunc.waitUtilNewRound()
      const pos = "Odd"
      const errormsg = '"errorCode":"SB1927"'
-    await TurboOddEvenFunc.PlaceBet(pos,1)
-    await TurboOddEvenFunc.VerifyBetStake(pos,1)
-    await TurboOddEvenFunc.PlaceBet("Even",5,'nowait')
+    await TurboOddEvenFunc.PlaceBet(pos,10)
+    await TurboOddEvenFunc.VerifyBetStake(pos,10)
+    await TurboOddEvenFunc.PlaceBet("Even",50,'nowait')
     await TurboOddEvenFunc.VerifyErrorMessage(errormsg)
     await TurboOddEvenFunc.CheckSettleBalance()
     await TurboOddEvenFunc.CheckRoundHistory()
@@ -72,16 +70,16 @@ describe('TurboOddEven Game', ()=>{
     await TurboOddEvenFunc.waitUtilNewRound()
     const pos = "Even"
     const errormsg = '"errorCode":"SB1927"'
-   await TurboOddEvenFunc.PlaceBet(pos,1)
-   await TurboOddEvenFunc.VerifyBetStake(pos,1)
-   await TurboOddEvenFunc.PlaceBet("Odd",5,'nowait')
+   await TurboOddEvenFunc.PlaceBet(pos,10)
+   await TurboOddEvenFunc.VerifyBetStake(pos,10)
+   await TurboOddEvenFunc.PlaceBet("Odd",50,'nowait')
    await TurboOddEvenFunc.VerifyErrorMessage(errormsg)
    await TurboOddEvenFunc.CheckSettleBalance()
   })  
 
   it('TC_10_Full_Verify Betting [1 -50] Chips on Odd', async () => {  
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [1,5,10,50]
+    const Achip =  [10,50,100,200]
     const pos = "Odd"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++){
@@ -95,7 +93,7 @@ describe('TurboOddEven Game', ()=>{
 
   it('TC_11_Full_Verify Betting [100-1000] Chips on Odd', async () => {   
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [100,200,500,1000]
+    const Achip =  [500,1000]
     const pos = "Odd"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++){
@@ -109,7 +107,7 @@ describe('TurboOddEven Game', ()=>{
 
   it('TC_12_Full_Verify Betting [1 -50] Chips on Even', async () => {   
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [1,5,10,50]
+    const Achip =   [10,50,100,200]
     const pos = "Even"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++){
@@ -122,7 +120,7 @@ describe('TurboOddEven Game', ()=>{
 
   it('TC_13_Full_Verify Betting [100-1000] Chips on Even', async () => {   
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [100,200,500,1000]
+    const Achip =  [500,1000]
     const pos = "Even"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++){
@@ -135,7 +133,7 @@ describe('TurboOddEven Game', ()=>{
 
   it('TC_14_Full_Verify Preset Betting [1-50] Chips on Odd', async () => {  
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [1,5,10,50]
+    const Achip =   [10,50,100,200]
     const pos = "Odd"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++)
@@ -151,7 +149,7 @@ describe('TurboOddEven Game', ()=>{
 
   it('TC_15_Full_Verify Preset Betting [100-1000] Chips on Odd', async () => {  
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [100,200,500,1000]
+    const Achip =  [500,1000]
     const pos = "Odd"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++)
@@ -167,7 +165,7 @@ describe('TurboOddEven Game', ()=>{
 
   it('TC_16_Full_Verify Preset Betting [1 -50] Chips on Odd', async () => {  
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [1,5,10,50]
+    const Achip =   [10,50,100,200]
     const pos = "Even"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++){
@@ -182,7 +180,7 @@ describe('TurboOddEven Game', ()=>{
 
   it('TC_17_Full_Verify Preset Betting [100-1000] Chips on Even', async () => { 
     await TurboOddEvenFunc.waitUtilNewRound() 
-    const Achip =  [100,200,500,1000]
+    const Achip =  [500,1000]
     const pos = "Even"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++)
@@ -200,7 +198,7 @@ describe('TurboOddEven Game', ()=>{
     //Test senario: Set Specific Preset Chip Then Place Bet extra chip-board on Odd
     //Verify all preset and chips on board can be bet success  
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [1,5,10,50]
+    const Achip =   [10,50,100,200]
     const pos = "Odd"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++)
@@ -218,7 +216,7 @@ describe('TurboOddEven Game', ()=>{
     //Test senario: Set Specific Preset Chip Then Place Bet extra chip-board on Odd
     //Verify all preset and chips on board can be bet success   
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [100,200,500]
+    const Achip =  [1000,500]
     const pos = "Odd"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++)
@@ -236,7 +234,7 @@ describe('TurboOddEven Game', ()=>{
     //Test senario: Set Specific Preset Chip Then Place Bet extra chip-board on Even
     //Verify all preset and chips on board can be bet success   
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [1,5,10,50]
+    const Achip =   [10,50,100,200]
     const pos = "Even"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++)
@@ -255,7 +253,7 @@ describe('TurboOddEven Game', ()=>{
     //Test senario: Set Specific Preset Chip Then Place Bet extra chip-board on Even
     //Verify all preset and chips on board can be bet success   
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [100,200,500]
+    const Achip =  [1000,500]
     const pos = "Even"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++)
@@ -273,7 +271,7 @@ describe('TurboOddEven Game', ()=>{
     //Test senario: Set Preset Chip Then Place Bet on Odd, Value of preset chip will be accmulated
     //Verify all preset and chips on board can be bet success  
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [1,5,10,50]
+    const Achip =   [10,50,100,200]
     const pos = "Odd"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++)
@@ -291,7 +289,7 @@ describe('TurboOddEven Game', ()=>{
     //Test senario: Set Preset Chip Then Place Bet on Odd, Value of preset chip will be accmulated
     //Verify all preset and chips on board can be bet success  
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [100,200,500]
+    const Achip =  [1000,500]
     const pos = "Odd"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++)
@@ -309,7 +307,7 @@ describe('TurboOddEven Game', ()=>{
     //Test senario: Set Preset Chip Then Place Bet on Even, Value of preset chip will be accmulated
     //Verify all preset and chips on board can be bet success   
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [1,5,10,50]
+    const Achip =   [10,50,100,200]
     const pos = "Even"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++)
@@ -328,7 +326,7 @@ describe('TurboOddEven Game', ()=>{
     //Test senario: Set Preset Chip Then Place Bet on Even, Value of preset chip will be accmulated
     //Verify all preset and chips on board can be bet success    
     await TurboOddEvenFunc.waitUtilNewRound()
-    const Achip =  [100,200,500]
+    const Achip =  [1000,500]
     const pos = "Even"
     let _stake =0
     for (let i =0 ; i< Achip.length ;i ++)
@@ -384,7 +382,7 @@ describe('TurboOddEven Game', ()=>{
     await TurboOddEvenFunc.OpenPreset()
     await TurboOddEvenFunc.VerifyPresetContent()
     await TurboOddEvenFunc.ClosePreset()
-    await utils.verifyBlockTime(game,TurboOddEvenFunc.PlaceBet,['Odd',1,'nowait'])
+    await utils.verifyBlockTime(game,TurboOddEvenFunc.PlaceBet,['Odd',10,'nowait'])
 
   })  
   
