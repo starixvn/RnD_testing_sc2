@@ -211,14 +211,19 @@ export const SelectPos = async(_pos) => {
 
 //Preset Chip
 export const PresetChip = async(_chip,_clear='clear') => {
-  await utils.clickPos(TurboBigSmallLocator.Preset.x,TurboBigSmallLocator.Preset.y)
+  await page.mouse.click(TurboBigSmallLocator.Preset.x,TurboBigSmallLocator.Preset.y)
+  // await utils.clickPos(TurboBigSmallLocator.Preset.x,TurboBigSmallLocator.Preset.y)
   const _prechip = `PresetChip${_chip}`
   //Clear preset chip --> return 0
   if (_clear == 'clear'){
     await ClearPresetChip()
   }
-  await utils.clickPos(TurboBigSmallLocator[_prechip].x,TurboBigSmallLocator[_prechip].y)
-  await utils.clickPos(TurboBigSmallLocator.PresetAccept.x,TurboBigSmallLocator.PresetAccept.y)//click Accept
+  await utils.sleep(300)
+  await page.mouse.click(TurboBigSmallLocator[_prechip].x,TurboBigSmallLocator[_prechip].y)
+  await page.mouse.click(TurboBigSmallLocator.PresetAccept.x,TurboBigSmallLocator.PresetAccept.y)
+  await utils.sleep(300)
+  // await utils.clickPos(TurboBigSmallLocator[_prechip].x,TurboBigSmallLocator[_prechip].y)
+  // await utils.clickPos(TurboBigSmallLocator.PresetAccept.x,TurboBigSmallLocator.PresetAccept.y)//click Accept
 }
 
 //Clear Preset Chip
@@ -392,8 +397,8 @@ export const CheckRoundHistory = async() => {
 export const CheckSettleBalance = async() => {
   let _beforebalance = await utils.getBalance()
   let _af = await GetWinLossStatus()
-  console.log('Is Win: ',_af.win, _af.betwin)
-  await utils.sleep(3000)
+    console.log('Is Win: ',_af.win, _af.betwin)
+  await utils.sleep(1000)
   let _afterbalance = await utils.getBalance()
   _beforebalance = _beforebalance +  _af.betwin
   if ( _af.win == true){
@@ -407,7 +412,7 @@ export const CheckSettleBalance = async() => {
 //Wait until new round
 export const waitUtilNewRound = async() => {
   let _found = await utils.getWsMessage('42/user/txturbo,["TXTurbo",{"remainingTime":36}]')
-  await utils.sleep(6000)
+  await utils.sleep(7000)
   // // await utils.CaptureSubImageToFile(TurboBigSmallLocator.NewRound)
   // const _title= await utils.findImage(TurboBigSmallLocator.NewRound.ImageCompare,TurboBigSmallLocator.NewRound)
   // console.log('new round ready')

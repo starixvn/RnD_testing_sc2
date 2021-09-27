@@ -32,10 +32,8 @@ describe('BigSmall Game', ()=>{
   await BigSmallFunc.waitUtilNewRound()
     const pos = "Big"
     const errormsg = `"errorCode":"SB1911","maxBet":3000`
-   await BigSmallFunc.PlaceBet(pos,1000)
-   await BigSmallFunc.PlaceBet(pos,1000)
-   await BigSmallFunc.PlaceBet(pos,1000)
-   await BigSmallFunc.PlaceBet(pos,50,'nowait')
+    await BigSmallFunc.PlaceBet(pos,10)
+   await BigSmallFunc.PlaceBet(pos,'Max','nowait')
    await BigSmallFunc.VerifyErrorMessage(errormsg)
   await BigSmallFunc.CheckSettleBalance()
    await BigSmallFunc.CheckRoundHistory()
@@ -45,10 +43,8 @@ describe('BigSmall Game', ()=>{
   await BigSmallFunc.waitUtilNewRound()
    const pos = "Small"
    const errormsg = `"errorCode":"SB1911","maxBet":3000`
-  await BigSmallFunc.PlaceBet(pos,1000)
-  await BigSmallFunc.PlaceBet(pos,1000)
-  await BigSmallFunc.PlaceBet(pos,1000)
-  await BigSmallFunc.PlaceBet(pos,50,'nowait')
+  await BigSmallFunc.PlaceBet(pos,10)
+  await BigSmallFunc.PlaceBet(pos,'Max','nowait')
   await BigSmallFunc.VerifyErrorMessage(errormsg)
   await BigSmallFunc.CheckSettleBalance()
   await BigSmallFunc.CheckRoundHistory()

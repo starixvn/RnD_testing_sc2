@@ -31,16 +31,17 @@ describe('BigSmall SicBo Game', ()=>{
   it('TC_06_Full_Verify bet chips', async () => {
     await BigSmallSBFunc.waitUtilNewRound()
     let pos = "Big"
-    let chips = [1,5,10,50,100,200,500,1000]
+    let chips = [10,20,50,100,200,500,'1k']
     for (let i of chips) {
       await BigSmallSBFunc.PlaceBet(pos,i) 
     }
-    await BigSmallSBFunc.verifyBetPosStake(pos,1866)
+    await BigSmallSBFunc.verifyBetPosStake(pos,1880)
+    await BigSmallSBFunc.getSettlementResult() 
   }) 
  
  it('TC_07_Full_Verify User can bet all specific', async () => {
   await BigSmallSBFunc.waitUtilNewRound()
-   let _chip = 1
+   let _chip = 10
    let _Aspecific = ['Specific1','Specific2','Specific3','Specific4','Specific5','Specific6']
    for (let i of _Aspecific) {
         await BigSmallSBFunc.PlaceBet(i,_chip) 
@@ -53,7 +54,7 @@ describe('BigSmall SicBo Game', ()=>{
 
 it('TC_08_1_Full_Verify User can bet all total score', async () => {
   await BigSmallSBFunc.waitUtilNewRound()
-  let _chip = 1
+  let _chip = 10
   let _Aspecific = ['Total4','Total5','Total6','Total7','Total8','Total9','Total10']
   for (let i of _Aspecific) {
        await BigSmallSBFunc.PlaceBet(i,_chip) 
@@ -65,7 +66,7 @@ it('TC_08_1_Full_Verify User can bet all total score', async () => {
 
 it('TC_08_2_Full_Verify User can bet all total score', async () => {
   await BigSmallSBFunc.waitUtilNewRound()
-  let _chip = 1
+  let _chip = 10
   let _Aspecific = ['Total11','Total12','Total13','Total14','Total15','Total16','Total17']
   for (let i of _Aspecific) {
        await BigSmallSBFunc.PlaceBet(i,_chip) 
@@ -77,7 +78,7 @@ it('TC_08_2_Full_Verify User can bet all total score', async () => {
 
 it('TC_09_Full_Verify User can bet all choice', async () => {
   await BigSmallSBFunc.waitUtilNewRound()
-  let _chip = 1
+  let _chip = 10
   let _Aspecific = ['Big','Small','AnyTriple']
   for (let i of _Aspecific) {
        await BigSmallSBFunc.PlaceBet(i,_chip) 
@@ -107,26 +108,39 @@ it('TC_14_Full_Verify Settlement Total4', async () => {
   await BigSmallSBFunc.checkSettlement(BigSmallSBFunc.PlaceBet,['Total4',50])
 }) 
 
-it('TC_15_Full_Verify Maxbet 2k', async () => {
+it('TC_15_1_Full_Verify Maxbet 20k', async () => {
   await BigSmallSBFunc.waitUtilNewRound()
-  let maxbet = 2000
-  const errormsg = `"errorCode":"SB1910","maxBet":2000`
-  let _Aspecific = ['Specific1','Specific2','Specific3','Specific4','Specific5','Specific6','Big','Small']
+  let maxbet = '20k'
+  const errormsg = `"errorCode":"SB1910","maxBet":20000`
+  let _Aspecific = ['Specific1','Specific2','Specific3','Specific4']
   for (let i of _Aspecific) {
-        await BigSmallSBFunc.PlaceBet(i,maxbet) 
-        await BigSmallSBFunc.PlaceBet(i,1,'nowait') 
-        await BigSmallSBFunc.VerifyErrorMessage(errormsg)
+        await BigSmallSBFunc.PlaceBet(i,10) 
+        await BigSmallSBFunc.PlaceBet(i,maxbet,'nowait') 
+        await BigSmallSBFunc.VerifyErrorMessage(errormsg)}
         // Wait for settle
         await BigSmallSBFunc.getSettlementResult() 
-        await utils.sleep(5000)
-     } 
+        await utils.sleep(5000) 
 }) 
 
-it('TC_16_Full_Verify Max bet 100', async () => {
+it('TC_15_2_Full_Verify Maxbet 20k', async () => {
   await BigSmallSBFunc.waitUtilNewRound()
-  let maxbet = 500
-  await BigSmallSBFunc.PlaceBet('Big',1) 
-  let errormsg = '"errorCode":"SB1910","maxBet":100'
+  let maxbet = '20k'
+  const errormsg = `"errorCode":"SB1910","maxBet":20000`
+  let _Aspecific = ['Specific5','Specific6','Big','Small']
+  for (let i of _Aspecific) {
+        await BigSmallSBFunc.PlaceBet(i,10)  
+        await BigSmallSBFunc.PlaceBet(i,maxbet,'nowait') 
+        await BigSmallSBFunc.VerifyErrorMessage(errormsg)}
+        // Wait for settle
+        await BigSmallSBFunc.getSettlementResult() 
+        await utils.sleep(5000) 
+}) 
+
+it('TC_16_Full_Verify Max bet 2000', async () => {
+  await BigSmallSBFunc.waitUtilNewRound()
+  let maxbet = '10k'
+  await BigSmallSBFunc.PlaceBet('Big',10) 
+  let errormsg = '"errorCode":"SB1910","maxBet":2000'
   let _Aspecific = ['AnyTriple','Total4','Total5','Total6','Total7','Total14','Total15','Total16','Total17']
   for (let i of _Aspecific) {
         await BigSmallSBFunc.PlaceBet(i,maxbet,'nowait') 
@@ -151,13 +165,13 @@ await utils.verifyBettingTime(game)
 })  
 
 it('TC_05_Full_Verify Block betting time', async () => {
-await utils.verifyBlockTime(game,BigSmallSBFunc.PlaceBet,['Big',1,'nowait'])
+await utils.verifyBlockTime(game,BigSmallSBFunc.PlaceBet,['Big',10,'nowait'])
 })  
 
 it('TC_21_Smoke_Verify User can bet all specific', async () => {
   await BigSmallSBFunc.waitUtilNewRound()
   await utils.sleep(1000)
-   let _chip = 1
+   let _chip = 10
    let _Aspecific = ['Specific1','Specific2','Specific3','Specific4','Specific5','Specific6','Total8','Total9','Total10','Total11','Total12','Total13','Big','Small','AnyTriple','Total4','Total5','Total6','Total7','Total14','Total15','Total16','Total17']
   //Select Chip
   await BigSmallSBFunc.Sliding_Select_Chip(_chip)
@@ -169,12 +183,12 @@ it('TC_21_Smoke_Verify User can bet all specific', async () => {
     // Wait for settle
    await BigSmallSBFunc.getSettlementResult() 
 }) 
- 
-it('TC_17_Full_Verify Max bet 500', async () => {
+
+it('TC_17_Full_Verify Max bet 10k', async () => {
   await BigSmallSBFunc.waitUtilNewRound()
-  let maxbet = 1000
-  await BigSmallSBFunc.PlaceBet('Big',5) 
-  let errormsg = '"errorCode":"SB1910","maxBet":500'
+  let maxbet = '20k'
+  await BigSmallSBFunc.PlaceBet('Big',50) 
+  let errormsg = '"errorCode":"SB1910","maxBet":10000'
   let _Aspecific = ['Total8','Total9','Total10','Total11','Total12','Total13']
   for (let i of _Aspecific) {
         await BigSmallSBFunc.PlaceBet(i,maxbet,'nowait') 
