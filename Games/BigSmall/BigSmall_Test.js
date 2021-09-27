@@ -31,7 +31,7 @@ describe('BigSmall Game', ()=>{
    it('TC_06_Full_Smoke_Verify Max Bet on Big', async () => {
   await BigSmallFunc.waitUtilNewRound()
     const pos = "Big"
-    const errormsg = `"errorCode":"SB1911","maxBet":3000`
+    const errormsg = `"errorCode":"SB1911","maxBet":20000`
     await BigSmallFunc.PlaceBet(pos,10)
    await BigSmallFunc.PlaceBet(pos,'Max','nowait')
    await BigSmallFunc.VerifyErrorMessage(errormsg)
@@ -42,7 +42,7 @@ describe('BigSmall Game', ()=>{
  it('TC_07_Full_Smoke_Verify Max Bet on Small', async () => {
   await BigSmallFunc.waitUtilNewRound()
    const pos = "Small"
-   const errormsg = `"errorCode":"SB1911","maxBet":3000`
+   const errormsg = `"errorCode":"SB1911","maxBet":20000`
   await BigSmallFunc.PlaceBet(pos,10)
   await BigSmallFunc.PlaceBet(pos,'Max','nowait')
   await BigSmallFunc.VerifyErrorMessage(errormsg)
