@@ -40,12 +40,12 @@ export const verifyBetChoice = async() => {
     _result = await utils.findImage(VipSedieLocator.White4)
     global.expect(_result.Val).to.equal(true)
 }
-export const selectChip = async(_chip=10)=>{
+export const selectChip = async(_chip=100)=>{
     /*  Param Explained:
         _chip : input chip amount will be selected, by default = 10
     */  
-    const _chipbar1 = [10,20,50,100,200]
-    const _chipbar2 = [500,1000,2000,3000]
+    const _chipbar1 = [100,200,500,1000,2000]
+    const _chipbar2 = [5000,1000,20000]
     if (_chipbar2.includes(_chip) === true){
         await utils.swipe(VipSedieLocator.ChipBroad.x,VipSedieLocator.ChipBroad.y,0,VipSedieLocator.ChipBroad.y)
         await utils.sleep(2000)
@@ -56,7 +56,7 @@ export const selectChip = async(_chip=10)=>{
     }
     await utils.clickPos(VipSedieLocator[`Chip${_chip}`].x,VipSedieLocator[`Chip${_chip}`].y) 
 }
-export const placeBet = async(_choice,_chip=10) => {
+export const placeBet = async(_choice,_chip=100) => {
     /*  Param Explained:
         _choice : input choice option will be selected, ex: 'Even' , 'Odd', '4Red' ....
         _chip : input chip amount will be selected, by default = 10
@@ -109,24 +109,31 @@ export const verifyMaxBet = async(_choice) =>{
         await utils.wsFindMessage(`42/user/vipsedie,["VipSeDie",{"remainingTime":39}]`)
         // Wait to new round
         await utils.sleep(9000)
-        await placeBet("Even",3000)
+        await placeBet("Even",20000)
         //await selectChip(3000)
         //flag = await utils.betProcess(VipSedieLocator.Odd.x, VipSedieLocator.Odd.y, `42/user/vipsedie,["VipSeDie",{"endBet":-1,"notice":"Tổng tiền cược tối đa ở phiên này là 3,000"}]`)
-        flag = await utils.betProcess(VipSedieLocator.Odd.x, VipSedieLocator.Odd.y, `errorCode":"SB1910","maxBet":3000`)
-        await utils.shouldBeEqual(flag.Val,true,`Verify error message Tổng tiền cược tối đa ở phiên này là 3,000`)
+        flag = await utils.betProcess(VipSedieLocator.Odd.x, VipSedieLocator.Odd.y, `errorCode":"SB1910","maxBet":20000`)
+        await utils.shouldBeEqual(flag.Val,true,`Verify error message Tổng tiền cược tối đa ở phiên này là 20,000`)
     }
     else if (_choice === 'Red4' || _choice === 'White4'){
         wsMessageReceived = []
-        await selectChip(500)
+        await selectChip(2000)
         // flag = await utils.betProcess(VipSedieLocator[`${_choice}`].x, VipSedieLocator[`${_choice}`].y, `42/user/vipsedie,["VipSeDie",{"endBet":-1,"notice":"Tiền cược tối đa ở cửa này là 500"}]`)
-        flag = await utils.betProcess(VipSedieLocator[`${_choice}`].x, VipSedieLocator[`${_choice}`].y, `errorCode":"SB1910","maxBet":500`)
-        await utils.shouldBeEqual(flag.Val,true, `Verify error message Tổng tiền cược tối đa ở phiên này là 500`)
+        flag = await utils.betProcess(VipSedieLocator[`${_choice}`].x, VipSedieLocator[`${_choice}`].y, `errorCode":"SB1910","maxBet":2000`)
+        await utils.shouldBeEqual(flag.Val,true, `Verify error message Tổng tiền cược tối đa ở phiên này là 2,000`)
+    }
+    else if (_choice === 'Red3' || _choice === 'White3'){
+        wsMessageReceived = []
+        await selectChip(10000)
+        // flag = await utils.betProcess(VipSedieLocator[`${_choice}`].x, VipSedieLocator[`${_choice}`].y, `42/user/vipsedie,["VipSeDie",{"endBet":-1,"notice":"Tiền cược tối đa ở cửa này là 500"}]`)
+        flag = await utils.betProcess(VipSedieLocator[`${_choice}`].x, VipSedieLocator[`${_choice}`].y, `errorCode":"SB1910","maxBet":10000`)
+        await utils.shouldBeEqual(flag.Val,true, `Verify error message Tổng tiền cược tối đa ở phiên này là 10,g000`)
     } else {
         wsMessageReceived = []
-        await selectChip(3000)
+        await selectChip(20000)
         // flag = await utils.betProcess(VipSedieLocator[`${_choice}`].x, VipSedieLocator[`${_choice}`].y, `42/user/vipsedie,["VipSeDie",{"endBet":-1,"notice":"Tiền cược tối đa ở cửa này là 3,000"}]`)
-        flag = await utils.betProcess(VipSedieLocator[`${_choice}`].x, VipSedieLocator[`${_choice}`].y, `errorCode":"SB1910","maxBet":3000`)
-        await utils.shouldBeEqual(flag.Val,true,`Verify error message Tổng tiền cược tối đa ở phiên này là 3,000`)
+        flag = await utils.betProcess(VipSedieLocator[`${_choice}`].x, VipSedieLocator[`${_choice}`].y, `errorCode":"SB1910","maxBet":20000`)
+        await utils.shouldBeEqual(flag.Val,true,`Verify error message Tổng tiền cược tối đa ở phiên này là 20,000`)
     }
 }
 export const getBalance = async() => {
@@ -179,7 +186,7 @@ const getUserResult = async() => {
         return null
     }
 }
-export const verifySettlement = async(_choice,_chip=10,_saveResult=false) => {
+export const verifySettlement = async(_choice,_chip=100,_saveResult=false) => {
     /*  Param Explained:
         _choice : input choice option will be selected, ex: 'Even' , 'Odd', '4Red' ....
         _chip : input chip amount will be selected, by default = 10
@@ -360,6 +367,7 @@ export const openGuide = async() => {
 
 export const closeGuide = async() => {
     await utils.clickPos(VipSedieLocator.GuideClose.x, VipSedieLocator.GuideClose.y)
+    await utils.sleep(3000)
 }
 
 export const verifyGuideContent = async()=> {
@@ -377,6 +385,7 @@ export const verifyGuideContent = async()=> {
         // width: VipSedieLocator.Guide.width,
         // height: VipSedieLocator.Guide.height}})
         // await utils.swipe(fx, fy, fx, ty) 
+        // End
         let _result = await utils.findImage(
             _AcheckImage[t],
             VipSedieLocator.Guide
@@ -404,6 +413,7 @@ export const verifyHistoryPopup = async() => {
 
 export const closeHistory = async() => {
     await utils.clickPos(VipSedieLocator.HistoryClose.x, VipSedieLocator.HistoryClose.y)
+    await utils.sleep(3000)
 }
 
 export const verifyDBCuoc = async(_resultOnWeb) => {
