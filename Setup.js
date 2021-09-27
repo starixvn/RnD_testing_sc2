@@ -41,7 +41,7 @@ before(async () => {
       // Set balance on Local
       if(env === 'cf_local' || env === 'cf_local1'){
         chai.request(config[env].setBalance).post("").send(
-          `ObCustId=${config[env].memberId[game]}&Balance=200000.00&MinBet=1.00&MaxBet=3000.00`
+          `ObCustId=${config[env].memberId[game]}&Balance=200000.00&MinBet=10.00&MaxBet=20000.00`
         ).end( async(err,res)=>{
           expect(res).to.have.status(200)
         })
@@ -52,7 +52,7 @@ before(async () => {
         const aMemberID = Object.values(config[env].memberId)
         for( let i =0 ; i< aMemberID.length;i++){
           chai.request(config[env].setBalance).post("").send(
-            `ObCustId=${aMemberID[i]}&Balance=200000.00&MinBet=1.00&MaxBet=3000.00`
+            `ObCustId=${aMemberID[i]}&Balance=200000.00&MinBet=10.00&MaxBet=20000.00`
           ).end( async(err,res)=>{
             expect(res).to.have.status(200)
           })
