@@ -25,7 +25,7 @@ describe('Send Message', ()=>{
             .post("/bot1710698751:AAFaBfulGZHsEXdkACx-BbDwn75nJ2i1MfY/sendMessage")
             .send({
                 //chat_id: -507838201,
-                chat_id: -508481623,
+                chat_id: -555677865,
                 parse_mode: "markdown",
                 text: `===============================================\n*Automation Test Result: ${day} Duration: ${rs.ExecutionTime} , Language: VN *\n`
                 +`Environment - *[${env}]*\nReport - [LINK](https://git3.nexdev.net/RnD/testing/mocha-playwright/-/jobs/${args.Job})${mainContent}`
@@ -38,7 +38,7 @@ describe('Send Message', ()=>{
             .post("/bot1710698751:AAFaBfulGZHsEXdkACx-BbDwn75nJ2i1MfY/sendMessage")
             .send({
                 // chat_id: -507838201,
-                chat_id: -508481623,
+                chat_id: -555677865,
                 parse_mode: "markdown",
                 text: `===============================================\n*Automation Test Result: ${day}*\n`
                 +`Environment - *[${env}]*\nReport - [LINK](https://git3.nexdev.net/RnD/testing/mocha-playwright/-/jobs/${args.Job})\nStatus - *Failed*`
