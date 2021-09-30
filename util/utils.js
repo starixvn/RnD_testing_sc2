@@ -529,8 +529,6 @@ export const Login = async(_env,_game) => {
     if(_env !== 'cf_local' && _env !== 'cf_local1') {
         // Login Member Site
         await MemberSiteFunc.login(_env,_game)
-        // Navigate Sabaclub
-        await navigate(page.url().toString().replace(/\/[Ss]ports/g,'')+config[_env].gamelobbyurl)
     } else {
         // Navigate Sabaclub from Simulator
         await MemberSiteFunc.login_local(_env,_game)
@@ -630,7 +628,7 @@ export const wsClient = class {
         this.client.onmessage = (e)=> {
             if (typeof e.data === 'string') {
                 this.wsMessage.push(e.data)
-                // console.log(e.data)
+                // console.log(this.wsMessage)
             }
         };
     
@@ -639,7 +637,9 @@ export const wsClient = class {
     }
     async SendMessage(message) {
         for(let i=0;i<config.setting.loop;i++){
+            console.log(this.client.readyState)
             if(this.client.readyState === this.client.OPEN ){
+                // console.log(message.toString())
                 this.client.send(message.toString())
                 break
             }
@@ -653,7 +653,7 @@ export const wsClient = class {
             for(let j=0; j< this.wsMessage.length; j++){
                 if(this.wsMessage[j].includes(messageWait)){
                     // console.log(this.wsMessage[j])
-                    i=60;
+                    i=config.setting.loop;
                     break
                 }
             }
@@ -687,8 +687,8 @@ export const wsClient = class {
     async getBalance(username,session) {
         await this.waitMessage('0{')
         await this.SendMessage('40/user/roulette,')
-        await this.waitMessage('40')
-        await this.SendMessage(`42/user/roulette,["signin",{"isAuthenticated":true,"username":"${username}","language":"vi-VN","ss":"${session}","isSSO":true,"time":"2021-03-22T09:16:12.371Z"}]`)
+        await this.waitMessage('40/user/roulette,')
+        await this.SendMessage(`42/user/roulette,["signin",{"isAuthenticated":true,"username":"${username}","language":"vi-VN","ss":"${session}","isSSO":true,"time":"2021-09-30T01:53:40.545Z"}]`)
         await this.waitMessage('42/user/roulette,["signedIn"]')
         await this.SendMessage('42/user/roulette,["inGame"]')
         await this.waitMessage('gameConfigs')

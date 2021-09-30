@@ -5,8 +5,8 @@ export const setting ={
         width : 1280,
         height : 720
     },
-    timeout : 60000,
-    loop : 60,
+    timeout : 90000,
+    loop : 90,
     headless: true,
 }
 
@@ -95,24 +95,24 @@ export const cf_local1 ={
 // }
 
 export const cf_sit ={
-    url: "http://demo:one23@qawer.playthefun.com:5068/login",
+    url: "http://athena000web.playthefun.com:3011/onelogin.aspx?id=supper",
     username: {
-        BlackJack : "supertestsaba66",
-        Sedie : "supertestsaba67",
-        VipSedie : "supertestsaba68",
-        Sicbo:  "supertestsaba69",
-        Keno:  "supertestsaba70",
-        Baccarat:  "supertestsaba71",
-        Roulette:  "supertestsaba72",
-        BigSmall : "supertestsaba73",
-        MiniSedie: "supertestsaba74",
-        TurboBigSmall: "supertestsaba75",
-        TurboOddEven: "supertestsaba76"
+        BlackJack : "vntestvg0001",
+        Sedie : "vntestvg0002",
+        VipSedie : "vntestvg0003",
+        Sicbo:  "vntestvg0004",
+        Keno:  "vntestvg0005",
+        Baccarat:  "vntestvg0006",
+        Roulette:  "vntestvg0007",
+        BigSmall : "vntestvg0008",
+        MiniSedie: "vntestvg0009",
+        TurboBigSmall: "vntestvg0010",
+        TurboOddEven: "vntestvg0011"
     },
     password: "1234aaAA",
-    gamelobbyurl: "/VendorGame/OpenSabaClubLobby",
-    urlWebsocket: "wss://uatproxy.sabagame.com/sit/roulette/socket.io/?EIO=3&transport=websocket",
-    urlOrigin: "https://sit.sabagame.com",
+    gamelobbyurl: "http://athena000web.playthefun.com:3011/GamePage.aspx?Game=VGaming&refer=",
+    urlWebsocket: "wss://l2uatproxy.sgamesuat.com/sit/roulette/socket.io/?EIO=3&transport=websocket",
+    urlOrigin: "https://l2sit.sgamesuat.com",
     protocol: "wss"
 }
 

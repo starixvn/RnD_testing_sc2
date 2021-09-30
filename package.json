@@ -70,5 +70,4 @@
         "exportStatus": "cross-var mocha --timeout 0 util/MarkTestCase/MarkTestCase.js -r @babel/register",
         "sendResultToTelegram": "cross-var mocha --timeout 0 util/SendResultToTelegram/*.js -r @babel/register"
     }
-
 }

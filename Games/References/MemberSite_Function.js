@@ -13,9 +13,19 @@ export const login = async(_env,_game) => {
         await utils.navigate(config[_env].url)
         await utils.waitForLoadState()
         
+        // Change Language
+        await utils.selectDrp(MemberSiteLocator.drpLanguage,MemberSiteLocator.optLanguage)
+        await utils.waitForLoadState()
+        // await utils.navigate(config[_env].url)
+        // await utils.waitForLoadState()
+        
+
         // Input Username and Password
         await utils.sendKeys(MemberSiteLocator.txtUsername,config[_env].username[_game])
         await utils.sendKeys(MemberSiteLocator.txtPassword,config[_env].password)
+        
+
+        await utils.sleep(1000)
 
         // Enter Login button
         if(_env == 'cf_prod'){
@@ -23,7 +33,10 @@ export const login = async(_env,_game) => {
         } else {
             await utils.clickEl(MemberSiteLocator.btnLogin)
         }
-        await utils.waitEl(MemberSiteLocator.imgLogo)
+        await utils.waitEl(MemberSiteLocator.divMainPage)
+        await utils.navigate(config[_env].gamelobbyurl)
+        await utils.waitEl(MemberSiteLocator.frmMainFrame)
+        await utils.navigate(await utils.getAttribute(MemberSiteLocator.frmMainFrame,'src'))
     } catch (error) {
         console.error(error.message);
     }

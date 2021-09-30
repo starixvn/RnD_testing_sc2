@@ -1,13 +1,21 @@
 export const MemberSiteLocator_vn = {
     // Login page
-    txtUsername : "//input[@id='txtID']",
-    txtPassword : "//input[@id='txtPW']",
-    btnLogin : "//button",
-    btnLoginPro : "//a[contains(@class,'btn btn')]",
+    txtUsername : "//input[@id='txtUserName']",
+    txtPassword : "//input[@id='txtPasswd']",
+    btnLogin : "//input[@id='btnLogon']",
+    btnLoginPro : "//input[@id='btnLogon']",
     imgLogo : "//div[@class='logo ']",
     optQuickLink : "//select[@id='act_sel']",
     optQuickLinkSabaClub : "*SabaClub",
     title : "Athena Demo Site",
+
+    divMainPage : "//div[contains(@id,'athena')]",
+
+    
+    // Change Language
+    drpLanguage : "select#SelLang",
+    optLanguage : "Tiếng Việt",
+    verifyLanguage : "//input[@value='TRUY CẬP']",
 
     // Frame Lobby 
     frmMainFrame : "//iframe[@id='frmGame']",
@@ -22,8 +30,8 @@ export const MemberSiteLocator_vn = {
 
 export const MemberSiteLocator_en = {
     // Login page
-    txtUsername : "//input[@id='txtID']",
-    txtPassword : "//input[@id='txtPW']",
+    txtUsername : "//input[@id='txtUserName']",
+    txtPassword : "txtPasswd",
     btnLogin : "//button",
     btnLoginPro : "//a[contains(@class,'btn btn')]",
     imgLogo : "//div[@class='logo ']",
@@ -31,6 +39,12 @@ export const MemberSiteLocator_en = {
     optQuickLinkSabaClub : "*SabaClub",
     title : "Athena Demo Site",
 
+    divMainPage : "//div[contains(@id,'athena')]",
+
+    // Change Language
+    drpLanguage : "select#SelLang",
+    optLanguage : "English",
+    verifyLanguage : "//input[@value='GO']",
     // Frame Lobby 
     frmMainFrame : "//iframe[@id='frmGame']",
 
