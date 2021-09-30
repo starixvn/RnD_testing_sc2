@@ -28,7 +28,7 @@ describe('Send Message', ()=>{
                 chat_id: -555677865,
                 parse_mode: "markdown",
                 text: `===============================================\n*Automation Test Result: ${day} Duration: ${rs.ExecutionTime} , Language: VN *\n`
-                +`Environment - *[${env}]*\nReport - [LINK](https://git3.nexdev.net/RnD/testing/mocha-playwright/-/jobs/${args.Job})${mainContent}`
+                +`Environment - *[${env}]*\nReport - [LINK](https://git3.nexdev.net/RnD/testing/sc2/-/jobs/${args.Job})${mainContent}`
             }).end( async(err,res)=>{
             expect(res).to.have.status(200)
             })
@@ -41,7 +41,7 @@ describe('Send Message', ()=>{
                 chat_id: -555677865,
                 parse_mode: "markdown",
                 text: `===============================================\n*Automation Test Result: ${day}*\n`
-                +`Environment - *[${env}]*\nReport - [LINK](https://git3.nexdev.net/RnD/testing/mocha-playwright/-/jobs/${args.Job})\nStatus - *Failed*`
+                +`Environment - *[${env}]*\nReport - [LINK](https://git3.nexdev.net/RnD/testing/sc2/-/jobs/${args.Job})\nStatus - *Failed*`
             }).end( async(err,res)=>{
             expect(res).to.have.status(200)
             })
