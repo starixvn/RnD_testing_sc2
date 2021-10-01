@@ -34,7 +34,12 @@ export const login = async(_env,_game) => {
             await utils.clickEl(MemberSiteLocator.btnLogin)
         }
         await utils.waitEl(MemberSiteLocator.divMainPage)
-        await utils.navigate(config[_env].gamelobbyurl)
+        if(_env === 'cf_uat'){
+            // Navigate Sabaclub
+             await utils.navigate(page.url().toString().replace(/\/NewIndex\?lang.*/g,'')+config[_env].gamelobbyurl)
+        } else {
+            await utils.navigate(config[_env].gamelobbyurl)
+        }
         await utils.waitEl(MemberSiteLocator.frmMainFrame)
         await utils.navigate(await utils.getAttribute(MemberSiteLocator.frmMainFrame,'src'))
     } catch (error) {
