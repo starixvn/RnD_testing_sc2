@@ -8,34 +8,81 @@ export const setting ={
     timeout : 90000,
     loop : 90,
     headless: true,
+    gameId: {
+        BlackJack : 1634,
+        Sedie : 1613,
+        VipSedie : 1633,
+        BigSmallSicbo:  1636,
+        Baccarat:  1621,
+        Roulette:  1632,
+        BigSmall : 1612,
+        MiniSedie: 1620,
+        TurboBigSmall: 1615,
+        TurboOddEven: 1617,
+        SedieWar: 1639,
+        FishPrawnCrab: 1614,
+        VipFishPrawnCrab: 1637,
+        VipBaccarat : 1638,
+        ThreeCards : 1643
+    },
+    gameIdlocal: {
+        BlackJack : 23,
+        Sedie : 2,
+        VipSedie : 22,
+        BigSmallSicbo:  25,
+        Baccarat:  10,
+        Roulette:  21,
+        BigSmall : 1,
+        MiniSedie: 9,
+        TurboBigSmall: 4,
+        TurboOddEven: 6,
+        SedieWar: 24,
+        Lottery: 31,
+        FishPrawnCrab: 3,
+        DragonTiger: 7,
+        FourGuardians: 29,
+        SpecialSedie: 24,
+        KenoProMax: 8,
+        VipFishPrawnCrab: 26,
+        VipBaccarat : 27,
+        ThreeCards : 35
+    }
 }
 
 export const cf_local ={
-    url: "https://l2-glbs1.lumigame.com/signin",
+    url: "https://l2-glbs.lumigame.com/signin",
     usernameSSO: "",
     memberId: {
-        BlackJack : "1001051",
-        Sedie : "1001052",
-        VipSedie : "1001053",
-        Sicbo:  "1001054",
-        Keno:  "1001055",
-        Baccarat:  "1001056",
-        Roulette:  "1001057",
-        BigSmall : "1001058",
-        MiniSedie: "1001059",
-        TurboBigSmall: "1001060",
-        TurboOddEven: "1001061",
-        SedieWar: "1001062",
-        BigSmallSicbo: "1001063",
-        FourGuardians: "1001064"
+        BlackJack : "1111051",
+        Sedie : "1111047",
+        VipSedie : "1111053",
+        Sicbo:  "1111054",
+        Keno:  "1111055",
+        Baccarat:  "1111056",
+        Roulette:  "1111057",
+        BigSmall : "1111058",
+        MiniSedie: "1111059",
+        TurboBigSmall: "1111060",
+        TurboOddEven: "1111061",
+        SedieWar: "1111062",
+        BigSmallSicbo: "1111063",
+        FourGuardians: "1111064",
+        FishPrawnCrab: "1111100",
+        DragonTiger:  "1111066",
+        SpecialSedie: "1111067",
+        KenoProMax: "1111068",
+        VipFishPrawnCrab: "1111101",
+        VipBaccarat : "1111102",
+        ThreeCards : "1111103"
     },
     password: "",
     gamelobbyurl: "",
-    urlWebsocket: "wss://l2-proxy1.lumigame.com/roulette/socket.io/?EIO=3&transport=websocket",
-    urlOrigin: "https://l2-games1.lumigame.com",
+    urlWebsocket: "wss://l2-proxy.lumigame.com/roulette/socket.io/?EIO=3&transport=websocket",
+    proxy: "https://l2-proxy.lumigame.com",
+    urlOrigin: "https://l2-games.lumigame.com",
     protocol: "wss",
-    retrieveEndGame : "https://l2-ows1.lumigame.com/SabaClub/RetrieveEndGameInfo",
-    setBalance : "https://l2-ows1.lumigame.com/SabaClub/CreateCustomer"
+    retrieveEndGame : "https://l2-ows.lumigame.com/SabaClub/RetrieveEndGameInfo",
+    setBalance : "https://l2-ows.lumigame.com/SabaClub/CreateCustomer"
 }
 
 export const cf_local1 ={
@@ -113,7 +160,7 @@ export const cf_sit ={
         FourGuardians: "vntestvg0004"
     },
     password: "1234aaAA",
-    gamelobbyurl: "http://athena000web.playthefun.com:3011/GamePage.aspx?Game=VGaming&refer=",
+    gamelobbyurl: "http://athena000web.playthefun.com:3011/GamePage.aspx?Game=VGaming&timeZone=7&gameId=",
     urlWebsocket: "wss://l2uatproxy.sgamesuat.com/sit/roulette/socket.io/?EIO=3&transport=websocket",
     urlOrigin: "https://l2sit.sgamesuat.com",
     protocol: "wss"
@@ -138,7 +185,7 @@ export const cf_uat ={
         FourGuardians: ""
     },
     password: "1234aa",
-    gamelobbyurl: "/GamePage.aspx?Game=VGaming&refer=",
+    gamelobbyurl: "/GamePage.aspx?Game=VGaming&timeZone=7&gameId=",
     urlWebsocket: "wss://l2uatproxy.sgamesuat.com/uat/roulette/socket.io/?EIO=3&transport=websocket",
     urlOrigin: "https://l2uat.sgamesuat.com"
 }
@@ -162,7 +209,7 @@ export const cf_prod ={
         FourGuardians: ""
     },
     password: "1234aa",
-    gamelobbyurl: "http://member.athena-demo-online.com/GamePage.aspx?Game=VGaming&refer=",
+    gamelobbyurl: "http://member.athena-demo-online.com/GamePage.aspx?Game=VGaming&timeZone=7&gameId=",
     urlWebsocket: "wss://proxy.v-gaming.net/roulette/socket.io/?EIO=3&transport=websocket",
     urlOrigin: "https://www.v-gaming.net",
     protocol: "wss"

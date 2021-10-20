@@ -45,7 +45,7 @@ export const selectChip = async(_chip=100)=>{
         _chip : input chip amount will be selected, by default = 10
     */  
     const _chipbar1 = [100,200,500,1000,2000]
-    const _chipbar2 = [5000,1000,20000]
+    const _chipbar2 = [5000,10000,20000]
     if (_chipbar2.includes(_chip) === true){
         await utils.swipe(VipSedieLocator.ChipBroad.x,VipSedieLocator.ChipBroad.y,0,VipSedieLocator.ChipBroad.y)
         await utils.sleep(2000)
