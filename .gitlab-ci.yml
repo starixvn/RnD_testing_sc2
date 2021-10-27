@@ -51,6 +51,8 @@ report:
   tags:
     - docker-automation-test
   script:
+    - npm install --no-optional
+    - npm run sendResultToTelegram --args=Job=$JOBR-env=$env --lang=$lang --mode=$Mode
     - echo "Cleaning up"
     - rm -rf "%CACHE_PATH%/%CI_PIPELINE_ID%"
   when: always
