@@ -7,15 +7,15 @@ let wsbigsmallsb = '42/user/fourguardians,["FourGuardians"'
 
 
 export const _clickPos = async(_locator) => {
-  await utils.clickPos(_locator.x,_locator.y )
+  await page.mouse.click(_locator.x,_locator.y )
+  await utils.sleep(300)
 }
-
 
 export const CloseGame = async() => {
   await _clickPos(FourGuardiansLocator.Menu)
   await utils.sleep(1000)
   await _clickPos(FourGuardiansLocator.Home)
-  await utils.sleep(3000)
+  await utils.sleep(2000)
   let flag = await utils.imageShouldNotDisplay(FourGuardiansLocator.Title)
   await utils.shouldBeEqual(flag.Val,true, `Verify Game is closed successfully`)
 
@@ -23,26 +23,26 @@ export const CloseGame = async() => {
 
 export const OpenHistory = async() => {
   await _clickPos(FourGuardiansLocator.Menu)
-  await utils.sleep(1000)
+  await utils.sleep(500)
   await _clickPos(FourGuardiansLocator.History)
   await utils.sleep(1000)
 }
 
 export const ClosePopUp = async() => {
   await _clickPos(FourGuardiansLocator.ClosePopUp)
-  await utils.sleep(1000)
+  await utils.sleep(500)
 }
 
 export const OpenGuide = async() => {
   await _clickPos(FourGuardiansLocator.Menu)
-  await utils.sleep(1000)
+  await utils.sleep(500)
   await _clickPos(FourGuardiansLocator.Guide)
   await utils.sleep(1000)
 }
 
 export const OpenPlayLineDetail = async() => {
   await _clickPos(FourGuardiansLocator.PayLine)
-  await utils.sleep(1000)
+  await utils.sleep(500)
 }
 
 export const VerifySignInSuccessfully = async() => {
@@ -113,8 +113,8 @@ export const SelectPayline = async(line) => {
 
 export const SelectStake= async(stake) => {
   await _clickPos(FourGuardiansLocator.Stake)
-  // stake = 0.1 | 1 |5
-  stake === 0.1 ?  await _clickPos(FourGuardiansLocator.Stake0_1) : stake === 1 ?  await _clickPos(FourGuardiansLocator.Stake1) : await _clickPos(FourGuardiansLocator.Stake5)
+  let chip = `Stake${stake}`
+  await _clickPos(FourGuardiansLocator[chip])
 }
 
 
@@ -253,7 +253,7 @@ export const checkSettlement = async (placebetfunc,args) => {
       await placebetfunc.apply(this,args)
       // get settle result
       let settle_result = await getSettlementResult()
-      await utils.sleep(1000)
+      await utils.sleep(3000)
       let _afbalance = await utils.getBalance()
       //check balance
       await utils.shouldBeEqual(settle_result.red + settle_result.betWin,_afbalance, `verify balance`) 
