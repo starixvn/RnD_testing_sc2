@@ -32,9 +32,9 @@ describe('TurboOddEven Game', ()=>{
   it('TC_06_Full_Smoke_Verify Max Bet on Odd', async () => {
     await TurboOddEvenFunc.waitUtilNewRound()
     const pos = "Odd"
-    const errormsg =  `"errorCode":"SB1911","maxBet":3000`
+    const errormsg =  `"errorCode":"SB1911"`
    await TurboOddEvenFunc.PlaceBet(pos,10)
-   await TurboOddEvenFunc.PlaceBet(pos,5000,'nowait')
+   await TurboOddEvenFunc.PlaceBet(pos,'Max','nowait')
    await TurboOddEvenFunc.VerifyErrorMessage(errormsg)
    await TurboOddEvenFunc.CheckSettleBalance()
    await TurboOddEvenFunc.CheckRoundHistory()
@@ -45,9 +45,9 @@ describe('TurboOddEven Game', ()=>{
  it('TC_07_Full_Smoke_Verify Max Bet on Even', async () => { 
   await TurboOddEvenFunc.waitUtilNewRound()
    const pos = "Even"
-   const errormsg =  `"errorCode":"SB1911","maxBet":3000`
+   const errormsg =  `"errorCode":"SB1911"`
   await TurboOddEvenFunc.PlaceBet(pos,10)
-  await TurboOddEvenFunc.PlaceBet(pos,5000,'nowait')
+  await TurboOddEvenFunc.PlaceBet(pos,'Max','nowait')
   await TurboOddEvenFunc.VerifyErrorMessage(errormsg)
   await TurboOddEvenFunc.CheckSettleBalance()
   await TurboOddEvenFunc.CheckRoundHistory()
