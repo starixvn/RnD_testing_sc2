@@ -7,7 +7,7 @@ export const setting ={
     },
     timeout : 90000,
     loop : 90,
-    headless: false,
+    headless: true,
     gameId: {
         BlackJack : 1634,
         Sedie : 1613,

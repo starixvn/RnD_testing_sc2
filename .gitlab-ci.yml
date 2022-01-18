@@ -1,10 +1,9 @@
 image: 
-  name: git3.nexdev.net:5050/rnd/testing/qc-auto-image
-  # name: roshannguyen/pwimg
+  name: git3.nexdev.net:5050/rnd/testing/qc-auto-image:master
 
 stages: 
   - test
-  - report
+ # - report
 
 test:
   stage: test
@@ -13,10 +12,12 @@ test:
   script:
     - echo $CI_PIPELINE_ID
     - npm install --no-optional
-    - npm run CI_SelGame_$Mode --args=env=$env --game=$PRODUCT --lang=$lang
+    - npm run CI_SelGame_$MODE --args=env=$ENV --game=$PRODUCT --cf_lang=$cf_lang
+  after_script:
+    - npm run sendResultToTelegram --args=Job=$CI_PIPELINE_ID-env=$ENV --cf_lang=$cf_lang --mode=$MODE  
   artifacts:
     paths:
-      - Report/$lang
+      - Report/$cf_lang
     when: always
     expire_in: 1 day 
 
@@ -46,13 +47,13 @@ test:
 #     - npm run exportStatus --args=env=$env
 #   when: always
 
-report:
-  stage: report
-  tags:
-    - docker-automation-test
-  script:
-    - npm install --no-optional
-    - npm run sendResultToTelegram --args=Job=$JOBR-env=$env --lang=$lang --mode=$Mode
-    - echo "Cleaning up"
-    - rm -rf "%CACHE_PATH%/%CI_PIPELINE_ID%"
-  when: always
+# report:
+#   stage: report
+#   tags:
+#     - docker-automation-test
+#   script:
+#     - npm install --no-optional
+#     - npm run sendResultToTelegram --args=Job=$JOBR-env=$env --lang=$lang --mode=$Mode
+#     - echo "Cleaning up"
+#     - rm -rf "%CACHE_PATH%/%CI_PIPELINE_ID%"
+#   when: always
