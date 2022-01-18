@@ -66,17 +66,17 @@ export const VerifySignInSuccessfully = async() => {
     // const _title= await utils.findImage(BigSmallLocator.Title.ImageCompare,BigSmallLocator.Title)
     // await utils.shouldBeEqual(_title.Val,true,'Check title')  
   // Verify Big
-  // await utils.CaptureSubImageToFile(BigSmallLocator.Big.ImageCompare,BigSmallLocator.Big.left,BigSmallLocator.Big.top,BigSmallLocator.Big.width,BigSmallLocator.Big.height)
-  const _big= await utils.findImage(BigSmallLocator.Big.ImageCompare,BigSmallLocator.Big)
-  await utils.shouldBeEqual(_big.Val,true,'Check big')  
+  await utils.CaptureSubImageToFile(BigSmallLocator.Big.ImageCompare,BigSmallLocator.Big.left,BigSmallLocator.Big.top,BigSmallLocator.Big.width,BigSmallLocator.Big.height)
+  // const _big= await utils.findImage(BigSmallLocator.Big.ImageCompare,BigSmallLocator.Big)
+  // await utils.shouldBeEqual(_big.Val,true,'Check big')  
   // Verify Small
-  // await utils.CaptureSubImageToFile(BigSmallLocator.Small.ImageCompare,BigSmallLocator.Small.left,BigSmallLocator.Small.top,BigSmallLocator.Small.width,BigSmallLocator.Small.height)
-  const _small= await utils.findImage(BigSmallLocator.Small.ImageCompare,BigSmallLocator.Small)
-  await utils.shouldBeEqual(_small.Val,true,'Check small')  
+  await utils.CaptureSubImageToFile(BigSmallLocator.Small.ImageCompare,BigSmallLocator.Small.left,BigSmallLocator.Small.top,BigSmallLocator.Small.width,BigSmallLocator.Small.height)
+  // const _small= await utils.findImage(BigSmallLocator.Small.ImageCompare,BigSmallLocator.Small)
+  // await utils.shouldBeEqual(_small.Val,true,'Check small')  
   // Verify odd
   // await utils.CaptureSubImageToFile(BigSmallLocator.Odds.ImageCompare,BigSmallLocator.Odds.left,BigSmallLocator.Odds.top,BigSmallLocator.Odds.width,BigSmallLocator.Odds.height)
-  const _odd= await utils.findImage(BigSmallLocator.Odds.ImageCompare,BigSmallLocator.Odds)
-  await utils.shouldBeEqual(_odd.Val,true,'Check odd')  
+  // const _odd= await utils.findImage(BigSmallLocator.Odds.ImageCompare,BigSmallLocator.Odds)
+  // await utils.shouldBeEqual(_odd.Val,true,'Check odd')  
 }
 
 

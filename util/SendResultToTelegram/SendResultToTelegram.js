@@ -8,47 +8,38 @@ describe('Send Message', ()=>{
     it('Send Telegram', async () => {
         let obj = await gsutils.repareData_vn()
         let rs = await gsutils.prepareResult_vn(obj)
+        let testuite = rs.Result[0].TestSuite
         const args = await parseArg(process.env.npm_config_args)
         let env = await envToString((typeof args.env !== 'undefined') ? args.env : 'cf_local')
-        let mode = process.env.npm_config_mode
-        let testSuiteDetail = "",mainContent       
+        let mode = (typeof process.env.npm_config_mode !== 'undefined') ? process.env.npm_config_mode: 'Smoke'
         if(obj !== 'NotFound'){
-            if(await gsutils.isFailed(obj) === true){
-                    testSuiteDetail += `\n*${rs.Result[0].TestSuite}*   :   ${rs.Result[0].pass}/${rs.testsrun} Passed/Total Run`
-                       }
-            //mainContent = await gsutils.isFailed(obj) === false ? ` ${obj[1].TestSuite} Passed total ${totalcase} testcases` : testSuiteDetail
-            mainContent = await gsutils.isFailed(obj) === false ? ` ${rs.Result[0].TestSuite}: All Passed (${rs.Result[0].pass} tcs)` : testSuiteDetail
-            chai.request("https://api.telegram.org")
-            .post("/bot1710698751:AAFaBfulGZHsEXdkACx-BbDwn75nJ2i1MfY/sendMessage")
+            let mainContent = await gsutils.isFailed(obj) === false ? `💻${testuite}: ✅` : `💻${testuite}: ❌` 
+            console.log(mainContent);
+             // //#### TelegramBot
+           chai.request("https://api.telegram.org")
+            .post("/bot2088610410:AAFdYvdtV9h2AucxKqhA5oztPMwSBJIcO_s/sendMessage")
             .send({
-                //chat_id: -507838201,
-                chat_id: -555677865,
-                parse_mode: "markdown",
-                text: `${mainContent} -${mode} Test on ${env} - Duration: ${rs.ExecutionTime}- [LINK](https://git3.nexdev.net/RnD/testing/sc2/-/pipelines/${args.Job})`   
-                // text: `===============================================\n*Automation Test Result: ${day} Duration: ${rs.ExecutionTime} , Language: VN *\n`
-                // +`Environment - *[${env}]*\nReport - [LINK](https://git3.nexdev.net/RnD/testing/sc2/-/jobs/${args.Job})${mainContent}`
+                chat_id: -605245129,
+                text: `${mainContent} ${mode} Test ${env}`
             }).end( async(err,res)=>{
-            expect(res).to.have.status(200)
-            })
-        } else {
-            chai.request("https://api.telegram.org")
-            .post("/bot1710698751:AAFaBfulGZHsEXdkACx-BbDwn75nJ2i1MfY/sendMessage")
-            .send({
-                // chat_id: -507838201,
-                chat_id: -555677865,
-                parse_mode: "markdown",
-                // text: `===============================================\n*Automation Test Result: ${day}*\n`
-                // +`Environment - *[${env}]*\nReport - [LINK](https://git3.nexdev.net/RnD/testing/sc2/-/jobs/${args.Job})\nStatus - *Failed*`
-                text: `${mainContent} -${mode} Test on ${env} - Duration: ${rs.ExecutionTime}- [LINK](https://git3.nexdev.net/RnD/testing/sc2/-/pipelines/${args.Job})`   
-            }).end( async(err,res)=>{
-            expect(res).to.have.status(200)
-            })
+                expect(res).to.have.status(200)})  
+        // // #### Skynet 
+        // await chai.request("https://bot.nexdev.net")
+        // .post("/skynex/api/messages/forwardwithtoken").set('content-type', 'application/x-www-form-urlencoded')
+        // .send({
+        //     token: "0A40aOc7CtpzjbBSJu8KNWQRoXyjRvf9",
+        //     conversationId: -1001516404043,
+        //     parse_mode: "Markdown",      
+        //     message: `${mainContent} ${mode} Test ${env} [LINK](https://git3.nexdev.net/RnD/testing/sc2/-/pipelines/${args.Job})`
+        //     // message: `${mainContent} ${mode} Test ${env} - ⏱: ${rs.ExecutionTime}- [LINK](https://git3.nexdev.net/RnD/testing/mocha-playwright/-/pipelines/${args.Job})`
+        // })
+
         }
     })  
 })
 
 const envToString = async(_env)=>{
-    if(_env === 'cf_local') return 'Local'
+    if(_env === 'cf_local') return '🏠'
     else if(_env === 'cf_local1') return 'Local1'
     else if(_env === 'cf_sit') return 'SIT'
     else if(_env === 'cf_uat') return 'UAT'

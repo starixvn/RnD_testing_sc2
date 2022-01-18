@@ -4,7 +4,7 @@ import * as utils from '../../util/utils'
 import * as TurboBigSmallFunc from '../TurboBigSmall/TurboBigSmall_Function'
 import * as GameLobbyFunc from '../References/GameLobby_Function'
 import * as ResultFunc from '../References/Result_Function'
-const TurboBigSmallLocator = (process.env.npm_config_lang === 'vn' ? require('./TurboBigSmall_Locator').TurboBigSmallLocator_vn : require('./TurboBigSmall_Locator').TurboBigSmallLocator_en)
+const TurboBigSmallLocator = (process.env.npm_config_lang === 'en' ? require('./TurboBigSmall_Locator').TurboBigSmallLocator_en : require('./TurboBigSmall_Locator').TurboBigSmallLocator_vn)
 
 describe('TurboBigSmall Game', ()=>{
 
@@ -31,7 +31,7 @@ describe('TurboBigSmall Game', ()=>{
   })  
 
  
-  it('TC_06_Full_Smoke_Verify Max Bet on Big', async () => {   
+  it('TC_06_Full_Verify Max Bet on Big', async () => {   
     wsMessageReceived =[]
     await TurboBigSmallFunc.waitUtilNewRound()
     const pos = "Big"
@@ -44,7 +44,7 @@ describe('TurboBigSmall Game', ()=>{
 
  }) 
  
- it('TC_07_Full_Smoke_Verify Max Bet on Small', async () => {  
+ it('TC_07_Full_Verify Max Bet on Small', async () => {  
   await TurboBigSmallFunc.waitUtilNewRound()
    const pos = "Small"
    const errormsg = `"errorCode":"SB1911","maxBet":3000`
@@ -56,7 +56,7 @@ describe('TurboBigSmall Game', ()=>{
 
 }) 
 
-  it('TC_08_Full_Verify User Can Only Bet on 1 Pos-Big', async () => {  
+  it('TC_08_Full_Smoke_Verify User Can Only Bet on 1 Pos-Big', async () => {  
     await TurboBigSmallFunc.waitUtilNewRound()
      const pos = "Big"
      const errormsg = '"errorCode":"SB1927"'
@@ -79,7 +79,7 @@ describe('TurboBigSmall Game', ()=>{
    await TurboBigSmallFunc.CheckSettleBalance()
   })  
  
-  it('TC_10_Full_Verify Betting [1 -50] Chips on Big', async () => {
+  it('TC_10_Full_Smoke_Verify Betting [1 -50] Chips on Big', async () => {
     await TurboBigSmallFunc.waitUtilNewRound()
     const Achip =  [10,50,100,200]
     const pos = "Big"

@@ -4,7 +4,7 @@ import * as utils from '../../util/utils'
 import * as TurboOddEvenFunc from '../TurboOddEven/TurboOddEven_Function'
 import * as GameLobbyFunc from '../References/GameLobby_Function'
 import * as ResultFunc from '../References/Result_Function'
-const TurboOddEvenLocator = (process.env.npm_config_lang === 'vn' ? require('./TurboOddEven_Locator').TurboOddEvenLocator_vn : require('./TurboOddEven_Locator').TurboOddEvenLocator_en)
+const TurboOddEvenLocator = (process.env.npm_config_lang === 'en' ? require('./TurboOddEven_Locator').TurboOddEvenLocator_en : require('./TurboOddEven_Locator').TurboOddEvenLocator_vn)
 
 
 describe('TurboOddEven Game', ()=>{
@@ -29,7 +29,7 @@ describe('TurboOddEven Game', ()=>{
 
   })  
 
-  it('TC_06_Full_Smoke_Verify Max Bet on Odd', async () => {
+  it('TC_06_Full_Verify Max Bet on Odd', async () => {
     await TurboOddEvenFunc.waitUtilNewRound()
     const pos = "Odd"
     const errormsg =  `"errorCode":"SB1911"`
@@ -42,7 +42,7 @@ describe('TurboOddEven Game', ()=>{
 
  }) 
  
- it('TC_07_Full_Smoke_Verify Max Bet on Even', async () => { 
+ it('TC_07_Full_Verify Max Bet on Even', async () => { 
   await TurboOddEvenFunc.waitUtilNewRound()
    const pos = "Even"
    const errormsg =  `"errorCode":"SB1911"`
@@ -54,7 +54,7 @@ describe('TurboOddEven Game', ()=>{
 
 }) 
 
-  it('TC_08_Full_Verify User Can Only Bet on 1 Pos-Odd', async () => {   
+  it('TC_08_Full_Smoke_Verify User Can Only Bet on 1 Pos-Odd', async () => {   
     await TurboOddEvenFunc.waitUtilNewRound()
      const pos = "Odd"
      const errormsg = '"errorCode":"SB1927"'
@@ -77,7 +77,7 @@ describe('TurboOddEven Game', ()=>{
    await TurboOddEvenFunc.CheckSettleBalance()
   })  
 
-  it('TC_10_Full_Verify Betting [1 -50] Chips on Odd', async () => {  
+  it('TC_10_Full_Smoke_Verify Betting [1 -50] Chips on Odd', async () => {  
     await TurboOddEvenFunc.waitUtilNewRound()
     const Achip =  [10,50,100,200]
     const pos = "Odd"

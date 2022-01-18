@@ -1,5 +1,5 @@
 import * as utils from '../../util/utils'
-const TurboOddEvenLocator = (process.env.npm_config_lang === 'vn' ? require('./TurboOddEven_Locator').TurboOddEvenLocator_vn : require('./TurboOddEven_Locator').TurboOddEvenLocator_en)
+const TurboOddEvenLocator = (process.env.npm_config_lang === 'en' ? require('./TurboOddEven_Locator').TurboOddEvenLocator_en : require('./TurboOddEven_Locator').TurboOddEvenLocator_vn)
 import * as config from '../../config/config'
 import {DB} from '../References/DataBase_Locator'
 var jp = require('jsonpath');

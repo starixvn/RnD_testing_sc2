@@ -577,6 +577,11 @@ export const Login = async(_env,_game) => {
         await MemberSiteFunc.login_local(_env,_game)
         await sleep(5000)
     }
+    if(_env == 'cf_prod'){
+        //select group currency
+        await clickEl('xpath=//input[@value="Submit"]')
+        await sleep(8000)     
+    }
     // Verify go to Game Lobby Successfully
     flag = await GameLobbyFunc.verifyLoginSuccessfully()
     console.log(flag.Val);

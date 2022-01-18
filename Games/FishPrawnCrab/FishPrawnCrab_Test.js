@@ -28,13 +28,13 @@ describe('FishPrawnCrab Game', ()=>{
       await FishPrawnCrabFunc.verifyBetChoice()
   })
   
-  it('TC_037_Full_Smoke_Verify History', async() => {
+  it('TC_003_Full_Smoke_Verify History', async() => {
     await FishPrawnCrabFunc.openHistory()
     await FishPrawnCrabFunc.verifyHistoryPopup()
     await FishPrawnCrabFunc.closeHistory()
   })
 
-  it('TC_043_Smoke_Verify Settlement all Bet Choices', async()=>{
+  it('TC_004_Smoke_Verify Settlement all Bet Choices', async()=>{
     let _choice = ['Stag','Gourd','Fish','Rooster','Crab','Prawn']
      await FishPrawnCrabFunc.verifySettlementMultipleChoices(_choice,20)
   })

@@ -1,6 +1,6 @@
 import * as utils from '../../util/utils'
 import * as config from '../../config/config'
-let SpecialSedieLocator = (process.env.npm_config_lang  == 'vn' ? require('./SpecialSedie_Locator').SpecialSedieLocator_vn : require('./SpecialSedie_Locator').SpecialSedieLocator_en)
+let SpecialSedieLocator = (process.env.npm_config_lang  == 'en' ? require('./SpecialSedie_Locator').SpecialSedieLocator_en : require('./SpecialSedie_Locator').SpecialSedieLocator_vn)
 import {DB} from '../References/DataBase_Locator'
 import _ from 'lodash';
 var jp = require('jsonpath')

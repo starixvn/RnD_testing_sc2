@@ -1,6 +1,6 @@
 import * as utils from '../../util/utils'
 import * as config from '../../config/config'
-let LotteryLocator = (process.env.npm_config_lang  == 'vn' ? require('./Lottery_Locator').LotteryLocator_vn : require('./Lottery_Locator').LotteryLocator_en)
+let LotteryLocator = (process.env.npm_config_lang  == 'en' ? require('./Lottery_Locator').LotteryLocator_en : require('./Lottery_Locator').LotteryLocator_vn)
 import {DB} from '../References/DataBase_Locator'
 import _ from 'lodash';
 var jp = require('jsonpath')

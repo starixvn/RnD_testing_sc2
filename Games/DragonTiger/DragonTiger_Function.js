@@ -1,6 +1,6 @@
 import * as utils from '../../util/utils'
 import * as config from '../../config/config'
-let DragonTigerLocator = (process.env.npm_config_lang  == 'vn' ? require('./DragonTiger_Locator').DragonTigerLocator_vn : require('./DragonTiger_Locator').DragonTigerLocator_en)
+let DragonTigerLocator = (process.env.npm_config_lang  == 'en' ? require('./DragonTiger_Locator').DragonTigerLocator_en : require('./DragonTiger_Locator').DragonTigerLocator_vn)
 import {DB} from '../References/DataBase_Locator'
 import _ from 'lodash';
 var jp = require('jsonpath')

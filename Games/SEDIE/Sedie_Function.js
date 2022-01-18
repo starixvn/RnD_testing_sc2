@@ -1,6 +1,6 @@
 import * as utils from '../../util/utils'
-const GameLobbyLocator = (process.env.npm_config_lang == 'vn' ? require('../References/GameLobby_Locator').GameLobbyLocator_vn : require('../References/GameLobby_Locator').GameLobbyLocator_en)
-const SedieLocator = (process.env.npm_config_lang === 'vn' ? require('./Sedie_Locator').SedieLocator_vn : require('./Sedie_Locator').SedieLocator_en)
+const GameLobbyLocator = (process.env.npm_config_lang == 'en' ? require('../References/GameLobby_Locator').GameLobbyLocator_en : require('../References/GameLobby_Locator').GameLobbyLocator_vn)
+const SedieLocator = (process.env.npm_config_lang === 'en' ? require('./Sedie_Locator').SedieLocator_en : require('./Sedie_Locator').SedieLocator_vn)
 import {DB} from '../References/DataBase_Locator'
 import * as config from '../../config/config'
 
@@ -354,7 +354,7 @@ const verifyDealer = async() => {
 export const returnHome = async() => {
     await utils.clickPos(SedieLocator.Home.x, SedieLocator.Home.y)
     // await utils.CaptureSubImageToFile(GameLobbyLocator.AccountName)
-    let flag = await utils.findImage(GameLobbyLocator.AccountName)
+    let flag = await utils.imageShouldNotDisplay(SedieLocator.Dealer)
     await utils.shouldBeEqual(flag.Val,true)
 }
 

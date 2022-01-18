@@ -1,7 +1,7 @@
 import * as utils from '../../util/utils'
 import {DB} from '../References/DataBase_Locator'
-const GameLobbyLocator = (process.env.npm_config_lang == 'vn' ? require('../References/GameLobby_Locator').GameLobbyLocator_vn : require('../References/GameLobby_Locator').GameLobbyLocator_en)
-const VipSedieLocator = (process.env.npm_config_lang === 'vn' ? require('./VipSedie_Locator').VipSedieLocator_vn : require('./VipSedie_Locator').VipSedieLocator_en)
+const GameLobbyLocator = (process.env.npm_config_lang == 'en' ? require('../References/GameLobby_Locator').GameLobbyLocator_en : require('../References/GameLobby_Locator').GameLobbyLocator_vn)
+const VipSedieLocator = (process.env.npm_config_lang === 'en' ? require('./VipSedie_Locator').VipSedieLocator_en : require('./VipSedie_Locator').VipSedieLocator_vn)
 
 import * as config from '../../config/config'
 
@@ -357,7 +357,7 @@ const verifyDealer = async() => {
 
 export const returnHome = async() => {
     await utils.clickPos(VipSedieLocator.Home.x, VipSedieLocator.Home.y)
-    let flag = await utils.findImage(GameLobbyLocator.AccountName)
+    let flag = await utils.imageShouldNotDisplay(VipSedieLocator.Dealer)
     await utils.shouldBeEqual(flag.Val,true)
 }
 

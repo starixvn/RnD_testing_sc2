@@ -1,6 +1,6 @@
 import * as utils from '../../util/utils'
 import * as config from '../../config/config'
-let RouletteLocator = (process.env.npm_config_lang  == 'vn' ? require('./Roulette_Locator').RouletteLocator_vn : require('./Roulette_Locator').RouletteLocator_en)
+let RouletteLocator = (process.env.npm_config_lang  == 'en' ? require('./Roulette_Locator').RouletteLocator_en : require('./Roulette_Locator').RouletteLocator_vn)
 import {DB} from '../References/DataBase_Locator'
 import _ from 'lodash';
 var jp = require('jsonpath')

@@ -1,6 +1,6 @@
 import * as utils from '../../util/utils'
 import * as config from '../../config/config'
-let KenoProMaxLocator = (process.env.npm_config_lang  == 'vn' ? require('./KenoProMax_Locator').KenoProMaxLocator_vn : require('./KenoProMax_Locator').KenoProMaxLocator_en)
+let KenoProMaxLocator = (process.env.npm_config_lang  == 'en' ? require('./KenoProMax_Locator').KenoProMaxLocator_en : require('./KenoProMax_Locator').KenoProMaxLocator_vn)
 import {DB} from '../References/DataBase_Locator'
 import _ from 'lodash';
 var jp = require('jsonpath')
@@ -242,7 +242,7 @@ export const GetSettleResult = async(_stake=null) => {
   let _bigwin = jp.value(obj[1],`$..settlementResult.big`);
   let _choicewin = _bigwin
   if (_choicewin == true){
-       _choicewin = process.env.npm_config_lang  == 'vn'?'Tài':'Big'
+       _choicewin = process.env.npm_config_lang  == 'en'?'Tài':'Big'
   }
   else {
     _choicewin = process.env.npm_config_lang  == 'vn'? 'Xỉu':'Small'

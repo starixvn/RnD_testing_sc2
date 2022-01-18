@@ -1,6 +1,6 @@
 import * as utils from '../../util/utils'
-const GameLobbyLocator = (process.env.npm_config_lang == 'vn' ? require('../References/GameLobby_Locator').GameLobbyLocator_vn : require('../References/GameLobby_Locator').GameLobbyLocator_en)
-const SedieWarLocator = (process.env.npm_config_lang === 'vn' ? require('./SedieWar_Locator').SedieWarLocator_vn : require('./SedieWar_Locator').SedieWarLocator_en)
+const GameLobbyLocator = (process.env.npm_config_lang == 'en' ? require('../References/GameLobby_Locator').GameLobbyLocator_en : require('../References/GameLobby_Locator').GameLobbyLocator_vn)
+const SedieWarLocator = (process.env.npm_config_lang === 'en' ? require('./SedieWar_Locator').SedieWarLocator_en : require('./SedieWar_Locator').SedieWarLocator_vn)
 import {DB} from '../References/DataBase_Locator'
 import * as config from '../../config/config'
 
@@ -273,7 +273,8 @@ export const returnHome = async() => {
     await utils.clickPos(SedieWarLocator.Menu.x, SedieWarLocator.Menu.y)
     await utils.sleep(1000)
     await utils.clickPos(SedieWarLocator.Home.x, SedieWarLocator.Home.y)
-    let flag = await utils.findImage(GameLobbyLocator.AccountName)
+    await utils.sleep(3000)
+    let flag = await utils.imageShouldNotDisplay(SedieWarLocator.Player)
     await utils.shouldBeEqual(flag.Val,true)
 }
 

@@ -2,7 +2,7 @@ const game = "Lottery"
 const addContext = require('mochawesome/addContext')
 import * as utils from '../../util/utils'
 import * as LotteryFunc from './Lottery_Function'
-let RouletteLocator = (process.env.npm_config_lang  == 'vn' ? require('./Lottery_Locator').RouletteLocator_vn : require('./Lottery_Locator').RouletteLocator_en)
+let RouletteLocator = (process.env.npm_config_lang  == 'en' ? require('./Lottery_Locator').RouletteLocator_en : require('./Lottery_Locator').RouletteLocator_vn)
 import * as GameLobbyFunc from '../References/GameLobby_Function'
 import * as ResultFunc from '../References/Result_Function'
 

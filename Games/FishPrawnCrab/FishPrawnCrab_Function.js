@@ -1,5 +1,5 @@
 import * as utils from '../../util/utils'
-const FishPrawnCrabLocator = (process.env.npm_config_lang === 'vn' ? require('./FishPrawnCrab_Locator').FishPrawnCrabLocator_vn : require('./FishPrawnCrab_Locator').FishPrawnCrabLocator_en)
+const FishPrawnCrabLocator = (process.env.npm_config_lang === 'en' ? require('./FishPrawnCrab_Locator').FishPrawnCrabLocator_en : require('./FishPrawnCrab_Locator').FishPrawnCrabLocator_vn)
 import {DB} from '../References/DataBase_Locator'
 import * as config from '../../config/config'
 const remainingTime = `42/user/baucua,["BauCua",{"remainingTime":40}]`
@@ -38,7 +38,7 @@ export const openHistory = async() => {
 }
 
 export const verifyHistoryPopup = async() => {
-    await utils.sleep(1000)
+    // await utils.sleep(1000)
     // await utils.CaptureSubImageToFile(FishPrawnCrabLocator.History)
     let flag = await utils.findImage(FishPrawnCrabLocator.History)
     await utils.shouldBeEqual(flag.Val,true)

@@ -1,5 +1,5 @@
 import * as utils from '../../util/utils'
-const FourGuardiansLocator = (process.env.npm_config_lang === 'vn' ? require('./FourGuardians_Locator').FourGuardiansLocator_vn : require('./FourGuardians_Locator').FourGuardiansLocator_en)
+const FourGuardiansLocator = (process.env.npm_config_lang === 'en' ? require('./FourGuardians_Locator').FourGuardiansLocator_en : require('./FourGuardians_Locator').FourGuardiansLocator_vn)
 import {DB} from '../References/DataBase_Locator'
 import * as config from '../../config/config'
 import _ from 'lodash';
@@ -73,14 +73,14 @@ export const PlaceBet = async (line,_stake) => {
 
 export const VerifyHistoryContent = async() => {
   await OpenHistory()
-  // await page.screenshot({path:FourGuardiansLocator.History.ImageCompare,clip:{x: FourGuardiansLocator.History.left,
-  //   y: FourGuardiansLocator.History.top,
-  //  width: FourGuardiansLocator.History.width,
-  //  height: FourGuardiansLocator.History.height}})
-  await utils.findImage(FourGuardiansLocator.History.ImageCompare,FourGuardiansLocator.History).then((res)=>
-  {
-    utils.shouldBeEqual(res.Val, true,'Check History')
-  }) 
+  await page.screenshot({path:FourGuardiansLocator.History.ImageCompare,clip:{x: FourGuardiansLocator.History.left,
+    y: FourGuardiansLocator.History.top,
+   width: FourGuardiansLocator.History.width,
+   height: FourGuardiansLocator.History.height}})
+  // await utils.findImage(FourGuardiansLocator.History.ImageCompare,FourGuardiansLocator.History).then((res)=>
+  // {
+  //   utils.shouldBeEqual(res.Val, true,'Check History')
+  // }) 
   await ClosePopUp()
 }
 
