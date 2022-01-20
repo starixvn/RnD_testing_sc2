@@ -13,26 +13,26 @@ describe('Send Message', ()=>{
         let env = await envToString((typeof args.env !== 'undefined') ? args.env : 'cf_local')
         let mode = (typeof process.env.npm_config_mode !== 'undefined') ? process.env.npm_config_mode: 'Smoke'
         if(obj !== 'NotFound'){
-            let mainContent = await gsutils.isFailed(obj) === false ? `💻${testuite}: ✅` : `💻${testuite}: ❌` 
+            let mainContent = await gsutils.isFailed(obj) === false ? `🖥 VG: ${testuite}: ✅` : `💻${testuite}: ❌` 
             console.log(mainContent);
-             // //#### TelegramBot
-           chai.request("https://api.telegram.org")
-            .post("/bot2088610410:AAFdYvdtV9h2AucxKqhA5oztPMwSBJIcO_s/sendMessage")
-            .send({
-                chat_id: -605245129,
-                text: `${mainContent} ${mode} Test ${env}`
-            }).end( async(err,res)=>{
-                expect(res).to.have.status(200)})  
-        // // #### Skynet 
-        // await chai.request("https://bot.nexdev.net")
-        // .post("/skynex/api/messages/forwardwithtoken").set('content-type', 'application/x-www-form-urlencoded')
-        // .send({
-        //     token: "0A40aOc7CtpzjbBSJu8KNWQRoXyjRvf9",
-        //     conversationId: -1001516404043,
-        //     parse_mode: "Markdown",      
-        //     message: `${mainContent} ${mode} Test ${env} [LINK](https://git3.nexdev.net/RnD/testing/sc2/-/pipelines/${args.Job})`
-        //     // message: `${mainContent} ${mode} Test ${env} - ⏱: ${rs.ExecutionTime}- [LINK](https://git3.nexdev.net/RnD/testing/mocha-playwright/-/pipelines/${args.Job})`
-        // })
+        //      // //#### TelegramBot
+        //    chai.request("https://api.telegram.org")
+        //     .post("/bot2088610410:AAFdYvdtV9h2AucxKqhA5oztPMwSBJIcO_s/sendMessage")
+        //     .send({
+        //         chat_id: -605245129,
+        //         text: `${mainContent} ${mode} Test ${env}`
+        //     }).end( async(err,res)=>{
+        //         expect(res).to.have.status(200)})  
+        // #### Skynet 
+        await chai.request("https://bot.nexdev.net")
+        .post("/skynex/api/messages/forwardwithtoken").set('content-type', 'application/x-www-form-urlencoded')
+        .send({
+            token: "0A40aOc7CtpzjbBSJu8KNWQRoXyjRvf9",
+            conversationId: -1001646418890,
+            parse_mode: "Markdown",      
+            message: `${mainContent} ${mode} Test ${env} [LINK](https://git3.nexdev.net/RnD/testing/sc2/-/pipelines/${args.Job})`
+            // message: `${mainContent} ${mode} Test ${env} - ⏱: ${rs.ExecutionTime}- [LINK](https://git3.nexdev.net/RnD/testing/mocha-playwright/-/pipelines/${args.Job})`
+        })
 
         }
     })  

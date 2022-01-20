@@ -25,7 +25,7 @@ describe('BigSmall SicBo Game', ()=>{
 
  it('TC_01_Full_Smoke_Verify can open game by click on game icon at the lobby', async () => {
     await BigSmallSBFunc.VerifySignInSuccessfully()
-
+    await BigSmallSBFunc.waitUtilNewRound()
   })  
 
   it('TC_06_Full_Verify bet chips', async () => {

@@ -47,18 +47,20 @@ export const CloseGuide = async() => {
 export const VerifySignInSuccessfully = async() => {
   // Verify Big
   // await utils.CaptureSubImageToFile(BigSmallSicboLocator.Big)
-  const _big= await utils.findImage(BigSmallSicboLocator.Big.ImageCompare,BigSmallSicboLocator.Big)
-  await utils.shouldBeEqual(_big.Val,true)  
+  let _msglogin = await utils.wsFindMessage('42/user/sicbo,["signedIn"]')
+
+  //const _big= await utils.findImage(BigSmallSicboLocator.Big.ImageCompare,BigSmallSicboLocator.Big)
+  await utils.shouldBeEqual(_msglogin.Val,true,'login failed')  
   // Verify Small
   // await utils.CaptureSubImageToFile(BigSmallSicboLocator.Small)
 
-  const _small= await utils.findImage(BigSmallSicboLocator.Small.ImageCompare,BigSmallSicboLocator.Small)
-  await utils.shouldBeEqual(_small.Val,true)  
+  // const _small= await utils.findImage(BigSmallSicboLocator.Small.ImageCompare,BigSmallSicboLocator.Small)
+  // await utils.shouldBeEqual(_small.Val,true,'small')  
   // Verify AnyTriple
   // await utils.CaptureSubImageToFile(BigSmallSicboLocator.AnyTriple)
 
-  const _triple= await utils.findImage(BigSmallSicboLocator.AnyTriple.ImageCompare,BigSmallSicboLocator.AnyTriple)
-  await utils.shouldBeEqual(_triple.Val,true)  
+  // const _triple= await utils.findImage(BigSmallSicboLocator.AnyTriple.ImageCompare,BigSmallSicboLocator.AnyTriple)
+  // await utils.shouldBeEqual(_triple.Val,true)  
   // Check Default Chip
   // const _defaultchip= await utils.findImage(BigSmallSicboLocator.ChipBroad.ImageCompare1,BigSmallSicboLocator.ChipBroad)
   // await utils.shouldBeEqual(_defaultchip.Val,true) 

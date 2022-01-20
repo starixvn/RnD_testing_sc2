@@ -46,15 +46,19 @@ export const OpenPlayLineDetail = async() => {
 }
 
 export const VerifySignInSuccessfully = async() => {
+
+  let _msglogin = await utils.wsFindMessage('42/user/fourguardians,["signedIn"]')
+  await utils.shouldBeEqual(_msglogin.Val,true,'login failed')  
+
    await utils.findImage(FourGuardiansLocator.Title.ImageCompare,FourGuardiansLocator.Title).then((res)=>
   {
     utils.shouldBeEqual(res.Val, true,'Check Title')
   })
-   // Check default round id is blank
-   await utils.findImage(FourGuardiansLocator.RoundId.ImageCompare,FourGuardiansLocator.RoundId).then((res)=>
-   {
-     utils.shouldBeEqual(res.Val, true,'Check RoundID is blank')
-   })
+  //  // Check default round id is blank
+  //  await utils.findImage(FourGuardiansLocator.RoundId.ImageCompare,FourGuardiansLocator.RoundId).then((res)=>
+  //  {
+  //    utils.shouldBeEqual(res.Val, true,'Check RoundID is blank')
+  //  })
   }
 
 
