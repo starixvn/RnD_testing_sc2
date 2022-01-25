@@ -8,7 +8,7 @@ let wsbigsmallsb = '42/user/fourguardians,["FourGuardians"'
 
 export const _clickPos = async(_locator) => {
   await page.mouse.click(_locator.x,_locator.y )
-  await utils.sleep(300)
+  await utils.sleep(500)
 }
 
 export const CloseGame = async() => {

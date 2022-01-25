@@ -23,7 +23,7 @@ describe('SpecialSedie Game', ()=>{
    await SpecialSedieFunc.VerifySignInSuccessfully()
     }) 
 
-   it('TC_02_Full_Smoke_Verify Max Bet on Big', async () => {
+   it('TC_02_Full_Smoke_Verify Settlement result when user place bet on Even', async () => {
   await SpecialSedieFunc.waitUtilNewRound()
   let stake = 10, pos= 'Even'
   await SpecialSedieFunc.PlaceBet(pos,stake)
@@ -32,7 +32,7 @@ describe('SpecialSedie Game', ()=>{
   await SpecialSedieFunc.CheckRoundHistory()
   }) 
  
-  it('TC_03_Full_Smoke_Verify Max Bet on Big', async () => {
+  it('TC_03_Full_Smoke_Verify Settlement result when user place bet on Odd', async () => {
     await SpecialSedieFunc.waitUtilNewRound()
     let stake = 10, pos= 'Odd'
     await SpecialSedieFunc.PresetChip(stake)

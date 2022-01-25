@@ -13,7 +13,7 @@ describe('Send Message', ()=>{
         let env = await envToString((typeof args.env !== 'undefined') ? args.env : 'cf_local')
         let mode = (typeof process.env.npm_config_mode !== 'undefined') ? process.env.npm_config_mode: 'Smoke'
         if(obj !== 'NotFound'){
-            let mainContent = await gsutils.isFailed(obj) === false ? `🖥 VG: ${testuite}: ✅` : `💻${testuite}: ❌` 
+            let mainContent = await gsutils.isFailed(obj) === false ? `🖥 VG: ${testuite}: ✅` : `🖥 VG:${testuite}: ❌` 
             console.log(mainContent);
         //      // //#### TelegramBot
         //    chai.request("https://api.telegram.org")
