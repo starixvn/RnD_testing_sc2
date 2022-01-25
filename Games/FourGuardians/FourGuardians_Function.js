@@ -49,7 +49,7 @@ export const VerifySignInSuccessfully = async() => {
 
   let _msglogin = await utils.wsFindMessage('42/user/fourguardians,["signedIn"]')
   await utils.shouldBeEqual(_msglogin.Val,true,'login failed')  
-
+  await utils.sleep(5000)
    await utils.findImage(FourGuardiansLocator.Title.ImageCompare,FourGuardiansLocator.Title).then((res)=>
   {
     utils.shouldBeEqual(res.Val, true,'Check Title')
