@@ -584,7 +584,6 @@ export const Login = async(_env,_game) => {
     }
     // Verify go to Game Lobby Successfully
     flag = await GameLobbyFunc.verifyLoginSuccessfully()
-    console.log(flag.Val);
     if(flag.Val ==false){
         console.log('capture screenshot');
         await page.screenshot({ path:`./Report/${lang}/Pictures/Login_Failed_${_game}.png`})
