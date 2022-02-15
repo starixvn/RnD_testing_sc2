@@ -25,11 +25,11 @@ export const login = async(_env,_game) => {
         // Input Username and Password
         //await utils.sendKeys(MemberSiteLocator.txtUsername,config[_env].username[_game])
         //await utils.sendKeys(MemberSiteLocator.txtPassword,config[_env].password)
-        await utils.CaptureSubImageToFile('secode.png',1096,16,35,14)
+        await utils.CaptureSubImageToFile('secode.png',1113,16,37,15)
         let secode = await utils.getTextFromImage('secode.png')
         if(isNaN(secode)){
             await utils.sleep(500)
-            await utils.CaptureSubImageToFile('secode.png',1096,16,37,15)
+            await utils.CaptureSubImageToFile('secode.png',1113,16,37,15)
             await utils.sleep(200)
             secode = await utils.getTextFromImage('secode.png')
         }
