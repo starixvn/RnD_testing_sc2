@@ -208,7 +208,8 @@ export const cf_uat ={
 }
 
 export const cf_prod ={
-    url: "http://www.athena-demo-online.com/onelogin.aspx?id=supper",
+    //url: "http://www.athena-demo-online.com/onelogin.aspx?id=supper",
+    url: "http://www.athena-demo-online.com/NewIndex?lang=vn",  
     username: {       
         Sedie : "VNtest044",
         VipSedie : "VNtest046",
@@ -233,7 +234,7 @@ export const cf_prod ={
         BitCoin: "VNtest044" ,
         CasinoHPoker: "VNtest046"       
     },
-    password: "1234aa",
+    password: "1q2w3e4r",
     gamelobbyurl: "http://member.athena-demo-online.com/GamePage.aspx?Game=VGaming&timeZone=7&gameId=",
     urlWebsocket: "wss://proxy.v-gaming.net/roulette/socket.io/?EIO=3&transport=websocket",
     urlOrigin: "https://www.v-gaming.net",

@@ -14,22 +14,33 @@ export const login = async(_env,_game) => {
         await utils.waitForLoadState()
         
         // Change Language
-        await utils.selectDrp(MemberSiteLocator.drpLanguage,MemberSiteLocator.optLanguage)
-        await utils.waitForLoadState()
+        // await utils.selectDrp(MemberSiteLocator.drpLanguage,MemberSiteLocator.optLanguage)
+        // await utils.clickEl("xpath=//*[@class='dropdown language ']")
+        // await utils.clickEl("//*[text()='Tiếng Việt']")
+        // await utils.waitForLoadState()
+        // await page.screenshot({ path: `test.png`});
+        await utils.sleep(3000)
         // await utils.navigate(config[_env].url)
         // await utils.waitForLoadState()
-        
-
         // Input Username and Password
-        await utils.sendKeys(MemberSiteLocator.txtUsername,config[_env].username[_game])
+        //await utils.sendKeys(MemberSiteLocator.txtUsername,config[_env].username[_game])
         //await utils.sendKeys(MemberSiteLocator.txtPassword,config[_env].password)
-        
-
+        await utils.CaptureSubImageToFile('secode.png',1096,16,35,14)
+        let secode = await utils.getTextFromImage('secode.png')
+        if(isNaN(secode)){
+            await utils.sleep(500)
+            await utils.CaptureSubImageToFile('secode.png',1096,16,37,15)
+            await utils.sleep(200)
+            secode = await utils.getTextFromImage('secode.png')
+        }
+        console.log(parseInt(secode));
+        await utils.sendKeys('id=username',config[_env].username[_game])
+        await utils.sendKeys('id=password',config[_env].password)
+        await utils.sendKeys('id=validation',parseInt(secode))      
         await utils.sleep(1000)
-
         // Enter Login button
         if(_env == 'cf_prod'){
-            await utils.clickEl(MemberSiteLocator.btnLoginPro)
+            await utils.clickEl("xpath=//*[text()='Đăng nhập']")
         } else {
             await utils.clickEl(MemberSiteLocator.btnLogin)
         }
