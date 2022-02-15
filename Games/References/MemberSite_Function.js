@@ -18,7 +18,7 @@ export const login = async(_env,_game) => {
         // await utils.clickEl("xpath=//*[@class='dropdown language ']")
         // await utils.clickEl("//*[text()='Tiếng Việt']")
         // await utils.waitForLoadState()
-        // await page.screenshot({ path: `test.png`});
+        await page.screenshot({ path: `./Report/${lang}/Pictures/test.png`});
         await utils.sleep(3000)
         // await utils.navigate(config[_env].url)
         // await utils.waitForLoadState()
