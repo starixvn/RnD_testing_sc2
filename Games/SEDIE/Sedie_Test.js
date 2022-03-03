@@ -26,7 +26,7 @@ describe('Sedie Game', ()=>{
       await SedieFunc.verifySignInSuccessfully()
   })  
 
-  it('TC_002_Full_Smoke_Verify Bet Choice', async() => {
+  it('TC_002_Full_Verify Bet Choice', async() => {
       await SedieFunc.verifyBetChoice()
   })
   
