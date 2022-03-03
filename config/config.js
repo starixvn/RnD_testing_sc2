@@ -209,7 +209,7 @@ export const cf_uat ={
 
 export const cf_prod ={
     //url: "http://www.athena-demo-online.com/onelogin.aspx?id=supper",
-    url: "http://www.athena-demo-online.com/NewIndex?lang=vn",  
+    url: "http://www.athena-demo-online.com/NewIndex?lang=vn&webskintype=3",  
     username: {       
         Sedie : "VNtest044",
         VipSedie : "VNtest046",

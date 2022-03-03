@@ -24,7 +24,7 @@ describe('MiniSedie Game', ()=>{
       await MiniSedieFunc.verifySignInSuccessfully()
   })  
 
-  it('TC_002_Full_Smoke_Verify Bet Choice', async() => {
+  it('TC_002_Full_Verify Bet Choice', async() => {
       await MiniSedieFunc.verifyBetChoice()
   })
   

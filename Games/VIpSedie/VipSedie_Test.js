@@ -26,7 +26,7 @@ describe('VipSedie Game', ()=>{
       await VipSedieFunc.verifySignInSuccessfully()
   })  
 
-  it('TC_002_Full_Smoke_Verify Bet Choice', async() => {
+  it('TC_002_Full_Verify Bet Choice', async() => {
       await VipSedieFunc.verifyBetChoice()
   })
   
