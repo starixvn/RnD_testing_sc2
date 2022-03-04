@@ -72,13 +72,12 @@ export const login_local = async(_env,_game) => {
             .end( async(err,res)=>{
               expect(res).to.have.status(200)
             })
-            //SSO
+             //SSO
             let _requestjs = 
-            {"obCustId": Number(config[_env].memberId[_game]),"memberName":"UdCApuxt","language":cflang,"currency":"INH","seq":"d,y,lumi","siteId":"4100300","siteName":"lumi","ip":"10.0.0.142","browserUserAgent":userAgent,"auth":{"partnerId":"ONEworksVGCash","partnerSecret":"VG@SC123"},"token":null,"redirectUrl":"#","verifyResult":null,"gameId":gameid,"setting":{"apiUrl":"http://l2_game_api_local_1:5000","authUrl":"http://l2_auth_api_local_1:5000","client":{"id":"game-server","secret":"gameserver@20luminet&"},"expireIn":1629190238,"useAuthenticate":true,"requestTimeout":10000,"owUrl":"https://l2-ows2.lumigame.com/SabaClub/CreateCustomer","localhost":"http://localhost:7456","mobileLocalhost":"http://localhost:3000","port":5000},"domain":"example.com","localhost":null,"appType":1,"isCash":true,"partner":"1W","resource":null}
+            {"obCustId":config[_env].memberId[_game],"memberName":"ZROiqJQ3","language":"vi-VN","currency":"INH","seq":"d,y,lumi","siteId":"4100300","siteName":"lumi","ip":"10.0.0.142","browserUserAgent":userAgent,"auth":{"operatorId":"ONEworksVGCash","operatorSecret":"VG@SC123"},"token":null,"redirectUrl":"http://l2-games.lumigame.com/?token=16a671e9-39a5-4669-a6b1-28499fac78f0&lang=vi-VN&gameId=0","verifyResult":null,"gameId":gameid,"setting":{"apiUrl":"http://l2_game_api_local:5000","authUrl":"http://l2_auth_api_local:5000","client":{"id":"game-server","secret":"gameserver@20luminet&"},"expireIn":1646365989,"useAuthenticate":true,"requestTimeout":10000,"owUrl":"https://l2-ows.lumigame.com/SabaClub/CreateCustomer","localhost":"http://localhost:7456","mobileLocalhost":"http://localhost:3000","port":5000},"domain":"example.com","localhost":null,"appType":1,"isCash":true,"partner":"1W","resource":null}
             let res = await chai.request(config[_env].url).post("/sso").send(_requestjs)  
             // await utils.sleep(2000)
             let obj = new Object()
-            console.log(res.text,res.status);
             if(res.status != 200) {
                 await utils.sleep(10000)
                 console.log('re-sso');

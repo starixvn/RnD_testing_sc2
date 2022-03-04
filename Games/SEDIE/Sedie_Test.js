@@ -176,7 +176,7 @@ describe('Sedie Game', ()=>{
   })
 
   it('TC_043_Smoke_Verify Settlement all Bet Choices', async()=>{
-    let _choice = ['Even','Odd','Red4','Red3','Red2','White4','White3']
+    let _choice = ['Even','Red4','Red3','Red2','White4','White3']
      await SedieFunc.verifySettlementMultipleChoices(_choice,10)
   })
 
