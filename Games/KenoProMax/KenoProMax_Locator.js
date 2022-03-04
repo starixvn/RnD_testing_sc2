@@ -14,16 +14,16 @@ export const KenoProMaxLocator_vn = {
 	Guide:  { x: 54, y:286},
 	History:  { x: 54, y:200},
 	Home:  { x: 54, y:115},
-	Chip10 : {x:444, y:636},
-	Chip20 : {x:530, y:636},
-	Chip50 : {x:610, y:636},
-	Chip100 : {x:688, y:636},
-	Chip200 : {x:776, y:636},
-	Chip500 : {x:860, y:636},
-	Chip1k : {x:610, y:636},
-	Chip5k : {x:688, y:636},
-	Chip10k : {x:776, y:636},
-	Chip20k : {x:860, y:636},
+	Chip20 : {x:444, y:636},
+	Chip50 : {x:530, y:636},
+	Chip100 : {x:610, y:636},
+	Chip200 : {x:688, y:636},
+	Chip1k : {x:776, y:636}
+	// Chip500 : {x:860, y:636},
+	// Chip1k : {x:610, y:636},
+	// Chip5k : {x:688, y:636},
+	// Chip10k : {x:776, y:636},
+	// Chip20k : {x:860, y:636},
 	}
 
 export const KenoProMaxLocator_en = { 

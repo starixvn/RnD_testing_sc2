@@ -35,7 +35,7 @@ describe('VipBaccarat Game', ()=>{
   })
 
   it('TC_043_Smoke_Verify Settlement all Bet Choices', async()=>{
-    let _choice = ['Big','PlayerPair','Player','Tie','Banker','Small','BankerPair']
+    let _choice = ['Big','PlayerPair','Player','Tie','BankerPair']
      await VipBaccaratFunc.verifySettlementMultipleChoices(_choice,100)
   })
 

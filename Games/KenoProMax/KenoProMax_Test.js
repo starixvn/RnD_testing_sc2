@@ -27,8 +27,8 @@ describe('KenoProMax Game', ()=>{
 
    it('TC_02_Smoke_Verify Full Bet Choices', async () => {
   await KenoProMaxFunc.waitUtilNewRound()
-  let stake = 10
-  let Apos = ['Big','Small','Odd','Even']
+  let stake = 20
+  let Apos = ['Big','Odd']
   for (let i of Apos){
     await KenoProMaxFunc.PlaceBet(i,stake)
     await KenoProMaxFunc.VerifyBetStake(i,stake)

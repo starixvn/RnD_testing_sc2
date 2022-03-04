@@ -23,7 +23,7 @@ describe('BigSmall Game', ()=>{
     }
   })
 
- it('TC_01_Full_Smoke_Verify can open game from lobby and nagvigation of statistic bar', async () => {
+ it('TC_01_Full_Verify can open game from lobby and nagvigation of statistic bar', async () => {
    await utils.sleep(8000)
    await BigSmallFunc.VerifySignInSuccessfully()
    //await BigSmallFunc.checkNavStatisticbar()

@@ -24,7 +24,7 @@ describe('TurboOddEven Game', ()=>{
     }
   })
 
- it('TC_01_Full_Smoke_Verify can open game by click on game icon at the lobby', async () => {
+ it('TC_01_Full_Verify can open game by click on game icon at the lobby', async () => {
     await TurboOddEvenFunc.VerifySignInSuccessfully()
 
   })  
