@@ -25,7 +25,9 @@ export const login = async(_env,_game) => {
         // Input Username and Password
         //await utils.sendKeys(MemberSiteLocator.txtUsername,config[_env].username[_game])
         //await utils.sendKeys(MemberSiteLocator.txtPassword,config[_env].password)
-        await utils.CaptureSubImageToFile('secode.png',1113,16,37,15)
+        //await utils.CaptureSubImageToFile('secode.png',1113,16,37,15)
+        await utils.CaptureSubImageToFile('secode.png',1105,16,37,15)
+        await utils.CaptureSubImageToFile('./Report/secode.png',1105,16,37,15)
         let secode = await utils.getTextFromImage('secode.png')
         if(isNaN(secode)==true){
             console.log('re secode');
