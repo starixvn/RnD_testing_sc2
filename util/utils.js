@@ -411,12 +411,17 @@ export const imageShouldNotDisplay = async(_subimage, _x=null, _y=null, _w=null,
 }
 
 // parse text from image
-export const getTextFromImage = async(_path) => {
+export const getNumberFromImage = async(_path) => {
     try {
         const worker = createWorker()
+        // await worker.setParameters({tessedit_char_whitelist:'0123456789'},)
         await worker.load();
         await worker.loadLanguage('eng');
         await worker.initialize('eng');
+        await worker.setParameters({
+            tessedit_char_whitelist: '0123456789',
+            preserve_interword_spaces: '0',
+          });
         const { data: { text } } = await worker.recognize(_path);
         // console.log(text)
         await worker.terminate();
@@ -623,7 +628,7 @@ export const getUIBalance = async(_path,_left=null, _top=null, _width=null, _hei
         await sleep(1000)
         await sharp(_path).resize(parseInt(_width),parseInt(_height)).toFile(_path+"_1")
         await sleep(1000)
-        let _txtNum = await parseNumber(await getTextFromImage(_path+"_1"))
+        let _txtNum = await parseNumber(await getNumberFromImage(_path+"_1"))
         // console.log(_txtNum)
         for(let t = 1; t<= config.setting.loop/4; t++){
             if(isNaN(_txtNum) !== true) {
@@ -637,7 +642,7 @@ export const getUIBalance = async(_path,_left=null, _top=null, _width=null, _hei
             await sleep(1000)
             await sharp(_path).resize(parseInt(_width*(1+(t*0.5))),parseInt(_height*(1+(t*0.5)))).toFile(_path+"_1")
             await sleep(1000)
-            _txtNum = await parseNumber(await getTextFromImage(_path+"_1"))
+            _txtNum = await parseNumber(await getNumberFromImage(_path+"_1"))
             // console.log(_txtNum)
         }
         return null
