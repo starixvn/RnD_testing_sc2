@@ -12,7 +12,7 @@ test:
   script:
     - echo $CI_PIPELINE_ID
     - npm install --no-optional
-    - npm run CI_SelGame_$MODE --args=env=$ENV --game=$PRODUCT --cf_lang=$cf_lang
+    - npm run CI_SelGame_Smoke --args=env=$ENV --game=$PRODUCT --cf_lang=$cf_lang
   after_script:
     - npm run sendResultToTelegram --args=Job=$CI_PIPELINE_ID-env=$ENV --cf_lang=$cf_lang --mode=$MODE  
   artifacts:
