@@ -414,7 +414,6 @@ export const imageShouldNotDisplay = async(_subimage, _x=null, _y=null, _w=null,
 export const getNumberFromImage = async(_path) => {
     try {
         const worker = createWorker()
-        // await worker.setParameters({tessedit_char_whitelist:'0123456789'},)
         await worker.load();
         await worker.loadLanguage('eng');
         await worker.initialize('eng');

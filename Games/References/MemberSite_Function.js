@@ -19,7 +19,7 @@ export const login = async(_env,_game) => {
         // await utils.clickEl("//*[text()='Tiếng Việt']")
         // await utils.waitForLoadState()
         // await page.screenshot({ path: `./Report/${lang}/Pictures/test.png`});
-        await utils.sleep(15000)
+        await utils.sleep(5000)
         // await utils.navigate(config[_env].url)
         // await utils.waitForLoadState()
         // Input Username and Password
@@ -27,7 +27,8 @@ export const login = async(_env,_game) => {
         //await utils.sendKeys(MemberSiteLocator.txtPassword,config[_env].password)
         await utils.CaptureSubImageToFile('secode.png',1113,16,37,15)
         let secode = await utils.getNumberFromImage('secode.png')
-        if(isNaN(secode)==true || secode.length <4){
+        console.log(secode.toString().length);
+        if(secode.toString().length <4){
             console.log('re secode')
             await page.reload()
             await utils.sleep(10000)
