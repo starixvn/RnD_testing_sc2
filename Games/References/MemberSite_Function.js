@@ -25,14 +25,15 @@ export const login = async(_env,_game) => {
         // Input Username and Password
         //await utils.sendKeys(MemberSiteLocator.txtUsername,config[_env].username[_game])
         //await utils.sendKeys(MemberSiteLocator.txtPassword,config[_env].password)
-        await utils.CaptureSubImageToFile('secode.png',1113,16,37,15)
+        await utils.CaptureSubImageToFile('secode.png',1109,16,35,15)
         let secode = await utils.getNumberFromImage('secode.png')
-        console.log(secode.toString().length);
-        if(secode.toString().length <4){
+        secode = secode.toString().trim()
+        console.log(secode.length);
+        if(secode.length <4){
             console.log('re secode')
             await page.reload()
             await utils.sleep(10000)
-            await utils.CaptureSubImageToFile('secode.png',1113,16,37,15)
+            await utils.CaptureSubImageToFile('secode.png',1109,16,35,15)
             await utils.sleep(200)
             secode = await utils.getNumberFromImage('secode.png')
             }
