@@ -15,7 +15,7 @@ export const CloseGame = async() => {
 
 //Wait until new round
 export const waitUtilNewRound = async() => {
-  let _found = await utils.getWsMessage('42/user/taixiu,["taixiu",{"remainingTime":61}]')
+  let _found = await utils.getWsMessage('{"remainingTime":61}]')
   await utils.sleep(11000)
 }
 
@@ -61,22 +61,9 @@ export const ClosePreset = async() => {
 
 
 export const VerifySignInSuccessfully = async() => {
-  // Verify BigSmall Title
-  // await utils.CaptureSubImageToFile(BigSmallLocator.Title.ImageCompare,BigSmallLocator.Title.left,BigSmallLocator.Title.top,BigSmallLocator.Title.width,BigSmallLocator.Title.height)
-    // const _title= await utils.findImage(BigSmallLocator.Title.ImageCompare,BigSmallLocator.Title)
-    // await utils.shouldBeEqual(_title.Val,true,'Check title')  
-  // Verify Big
-  await utils.CaptureSubImageToFile(BigSmallLocator.Big.ImageCompare,BigSmallLocator.Big.left,BigSmallLocator.Big.top,BigSmallLocator.Big.width,BigSmallLocator.Big.height)
-  // const _big= await utils.findImage(BigSmallLocator.Big.ImageCompare,BigSmallLocator.Big)
-  // await utils.shouldBeEqual(_big.Val,true,'Check big')  
-  // Verify Small
-  await utils.CaptureSubImageToFile(BigSmallLocator.Small.ImageCompare,BigSmallLocator.Small.left,BigSmallLocator.Small.top,BigSmallLocator.Small.width,BigSmallLocator.Small.height)
-  // const _small= await utils.findImage(BigSmallLocator.Small.ImageCompare,BigSmallLocator.Small)
-  // await utils.shouldBeEqual(_small.Val,true,'Check small')  
-  // Verify odd
-  // await utils.CaptureSubImageToFile(BigSmallLocator.Odds.ImageCompare,BigSmallLocator.Odds.left,BigSmallLocator.Odds.top,BigSmallLocator.Odds.width,BigSmallLocator.Odds.height)
-  // const _odd= await utils.findImage(BigSmallLocator.Odds.ImageCompare,BigSmallLocator.Odds)
-  // await utils.shouldBeEqual(_odd.Val,true,'Check odd')  
+  let found =await utils.wsFindMessage('signedIn')
+  await utils.shouldBeEqual(found.Val, true,'Check login success')
+  utils.sleep(5000)
 }
 
 

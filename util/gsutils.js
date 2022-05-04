@@ -56,35 +56,14 @@ const getTestSuiteName = async(txt)=>{
 export const repareData_vn = async(_note="")=> {
     try {
         const jsonResult = require(`../Report/vn/mochawesome.json`)
-        let note = _note
-        // Get excution time
-        let t = new Date().toLocaleString()
         // Get testCase List
-        let rawTestcaseName = jp.query(jsonResult,'$..tests..fullTitle')
-        let testcaseName = [],testSuiteName = []
-        for(let i =0; i<rawTestcaseName.length ;i++) {
-            testcaseName.push(await getTestcaseName(rawTestcaseName[i]))
-            testSuiteName.push(await getTestSuiteName(rawTestcaseName[i]))
-        }
-        // Get Pass/Failed
-        let rawStatus = jp.query(jsonResult,'$..tests..pass')
-        let status =[]
-        for(let i=0; i<rawStatus.length ;i++) {
-            status.push( (rawStatus[i] === true ) ? 'Passed' : 'Failed')
-        }
-        // push duration
-        let rawduration = jp.query(jsonResult,'$..tests..duration')
-        let _duration =[]
-        for(let i=0; i<rawduration.length ;i++) {
-            _duration.push(parseFloat(Number(rawduration[i])/1000).toFixed(2))            
-        }
-
-        let object = []
-        // Create Object file
-        for(let i=0; i<rawTestcaseName.length;i++) {
-            object.push({"Automation ID":testcaseName[i], Status: status[i], "Execution Time": t, TestSuite: testSuiteName[i] , "Note":note, "Duration": _duration[i]})
-        }
-        return object
+        let totalpassed =  jp.value(jsonResult,'$..stats.passes')
+        let totalfailed =  jp.value(jsonResult,'$..stats.failures')
+        let testSuiteName =  jp.query(jsonResult,'$..tests[0]..fullTitle')
+        let temp = testSuiteName[0].split('Game TC_')
+        testSuiteName =temp[0].trim()
+        let finalresult = totalfailed > 0 ? 'Failed' : 'Passed';
+        return {totalpassed: totalpassed,totalfailed:totalfailed,finalresult:finalresult,testSuiteName:testSuiteName}
     } catch {
         return 'NotFound'
     }

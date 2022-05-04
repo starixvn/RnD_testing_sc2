@@ -4,7 +4,7 @@ import * as config from '../../config/config'
 
 export const verifyLoginSuccessfully = async() => {
         // return await utils.findImage(GameLobbyLocator.Acco
-        return await utils.wsFindMessage('{"Authorized":true')
+        return await utils.wsFindMessage('Authorized":true')
         }
 
 export const OpenGameFromLobby = async(_Gamename) => {

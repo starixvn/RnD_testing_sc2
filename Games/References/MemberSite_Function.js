@@ -39,9 +39,11 @@ export const login = async(_env,_game) => {
             }
         // await utils.CaptureSubImageToFile(`secode2.png`,1113,16,37,15)
         console.log(parseInt(secode));
+        await utils.sendKeys('id=validation',parseInt(secode))    
+        console.log('done submit sec code');
+        await utils.sleep(1000)
         await utils.sendKeys('id=username',config[_env].username[_game])
         await utils.sendKeys('id=password',config[_env].password)
-        await utils.sendKeys('id=validation',parseInt(secode))      
         await utils.sleep(1000)
         // Enter Login button
         if(_env == 'cf_prod'){
@@ -69,15 +71,14 @@ export const login_local = async(_env,_game) => {
             const cflang = process.env.npm_config_cf_lang=='en'?'en-US':'vi-VN'
             let gameid = config.setting.gameIdlocal[_game]
             //Set Balance 
+            // let _requestdata = 
+            // `ObCustId=${config[_env].memberId[_game]}&Balance=200000.00&MinBet=1.00&MaxBet=3000.00&Partner=ow`
             let _requestdata = 
-            `ObCustId=${config[_env].memberId[_game]}&Balance=200000.00&MinBet=1.00&MaxBet=3000.00&Partner=ow`
-            chai.request(config[_env].setBalance).post("").send(_requestdata)
-            .end( async(err,res)=>{
-              expect(res).to.have.status(200)
-            })
+            `PlayerId=${config[_env].memberId[_game]}&Balance=200000.00&MinBet=1.00&MaxBet=3000.00&Operator=ow`
+            let ress= chai.request(config[_env].setBalance).post("/").send(_requestdata)
              //SSO
             let _requestjs = 
-            {"obCustId":config[_env].memberId[_game],"memberName":"ZROiqJQ3","language":"vi-VN","currency":"INH","seq":"d,y,lumi","siteId":"4100300","siteName":"lumi","ip":"10.0.0.142","browserUserAgent":userAgent,"auth":{"operatorId":"ONEworksVGCash","operatorSecret":"VG@SC123"},"token":null,"redirectUrl":"http://l2-games.lumigame.com/?token=16a671e9-39a5-4669-a6b1-28499fac78f0&lang=vi-VN&gameId=0","verifyResult":null,"gameId":gameid,"setting":{"apiUrl":"http://l2_game_api_local:5000","authUrl":"http://l2_auth_api_local:5000","client":{"id":"game-server","secret":"gameserver@20luminet&"},"expireIn":1646365989,"useAuthenticate":true,"requestTimeout":10000,"owUrl":"https://l2-ows.lumigame.com/SabaClub/CreateCustomer","localhost":"http://localhost:7456","mobileLocalhost":"http://localhost:3000","port":5000},"domain":"example.com","localhost":null,"appType":1,"isCash":true,"partner":"1W","resource":null}
+            {"playerId":config[_env].memberId[_game],"memberName":"ZROiqJQ3","language":"vi-VN","currency":"INH","seq":"d,y,lumi","siteId":"4100300","siteName":"lumi","ip":"10.0.0.142","browserUserAgent":userAgent,"auth":{"operatorId":"ONEworksVGCash","operatorSecret":"VG@SC123"},"token":null,"redirectUrl":"http://l2-games.lumigame.com/?token=16a671e9-39a5-4669-a6b1-28499fac78f0&lang=vi-VN&gameId=0","verifyResult":null,"gameId":gameid,"setting":{"apiUrl":"http://l2_game_api_local:5000","authUrl":"http://l2_auth_api_local:5000","client":{"id":"game-server","secret":"gameserver@20luminet&"},"expireIn":1646365989,"useAuthenticate":true,"requestTimeout":10000,"owUrl":"https://l2-ows.lumigame.com/SabaClub/CreateCustomer","localhost":"http://localhost:7456","mobileLocalhost":"http://localhost:3000","port":5000},"domain":"example.com","localhost":null,"appType":1,"isCash":true,"partner":"1W","resource":null}
             let res = await chai.request(config[_env].url).post("/sso").send(_requestjs)  
             // await utils.sleep(2000)
             let obj = new Object()
