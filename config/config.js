@@ -87,47 +87,10 @@ export const cf_local ={
     gamelobbyurl: "",
     urlWebsocket: "wss://l2-proxy.lumigame.com/roulette/socket.io/?EIO=3&transport=websocket",
     proxy: "https://l2-proxy.lumigame.com",
-    urlOrigin: "https://l2-games.lumigame.com",
+    urlOrigin: "https://l2-games.lumigame.com/",
     protocol: "wss",
     retrieveEndGame : "https://l2-ows.lumigame.com/SabaClub/RetrieveEndGameInfo",
     setBalance : "https://l2-ows.lumigame.com/SabaClub/CreateCustomer"
-}
-
-export const cf_local1 ={
-    url: "https://l1-glbs1.lumigame.com/signin",
-    usernameSSO: "",
-    memberId: {
-        BlackJack : "1001051",
-        Sedie : "1001052",
-        VipSedie : "1001053",
-        Sicbo:  "1001054",
-        Keno:  "1001055",
-        Baccarat:  "1001056",
-        Roulette:  "1001057",
-        BigSmall : "1001058",
-        MiniSedie: "1001059",
-        TurboBigSmall: "1001060",
-        TurboOddEven: "1001061",
-        SedieWar: "1001062",
-        BigSmallSicbo: "1001063",
-        FourGuardians: "1001064",
-        Lottery: "1001065",
-        FishPrawnCrab: "1001100",
-        DragonTiger:  "1001066",
-        SpecialSedie: "1001067",
-        KenoProMax: "1001068",
-        VipFishPrawnCrab: "1001101",
-        VipBaccarat : "1001102",
-        ThreeCards : "1001103",
-        HeroSlot : "1001104"
-    },
-    password: "",
-    gamelobbyurl: "",
-    urlWebsocket: "wss://l1-proxy1.lumigame.com/roulette/socket.io/?EIO=3&transport=websocket",
-    urlOrigin: "https://l1-games1.lumigame.com",
-    protocol: "wss",
-    retrieveEndGame : "https://l1-ows1.lumigame.com/SabaClub/RetrieveEndGameInfo",
-    setBalance : "https://l1-ows1.lumigame.com/SabaClub/CreateCustomer"
 }
 
 export const cf_sit ={
@@ -180,8 +143,9 @@ export const cf_uat ={
 }
 
 export const cf_prod ={
+    url: "http://smart.athena-demo-online.com/",
     //url: "http://www.athena-demo-online.com/onelogin.aspx?id=supper",
-    url: "http://www.athena-demo-online.com/NewIndex?lang=vn&webskintype=3",  
+    // url: "http://www.athena-demo-online.com/NewIndex?lang=vn&webskintype=3",  
     username: {       
         Sedie : "VNtest044",
         VipSedie : "VNtest046",
@@ -207,8 +171,10 @@ export const cf_prod ={
         CasinoHPoker: "VNtest046"       
     },
     password: "1q2w3e4r",
-    gamelobbyurl: "http://member.athena-demo-online.com/GamePage.aspx?Game=VGaming&timeZone=7&gameId=",
-    urlWebsocket: "wss://proxy.v-gaming.net/roulette/socket.io/?EIO=3&transport=websocket",
+    // gamelobbyurl: "http://member.athena-demo-online.com/GamePage.aspx?Game=VGaming&timeZone=7&gameId=",
+    // gamelobbyurl: "http://smart.athena-demo-online.com/?v=0_40339/#ThirdPartyGame/vid=66&gid=0",
+    gamelobbyurl: "http://smart.athena-demo-online.com/AuthorizationCustomer/AuthorizationVGaming?gameId=",
+	urlWebsocket: "wss://proxy.v-gaming.net/roulette/socket.io/?EIO=3&transport=websocket",
     urlOrigin: "https://www.v-gaming.net",
     protocol: "wss"
 }

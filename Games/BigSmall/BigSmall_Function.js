@@ -15,7 +15,7 @@ export const CloseGame = async() => {
 
 //Wait until new round
 export const waitUtilNewRound = async() => {
-  let _found = await utils.getWsMessage('{"remainingTime":61}]')
+  let _found = await utils.getWsMessage('{"remainingTime":61}')
   await utils.sleep(11000)
 }
 
@@ -110,23 +110,14 @@ export const PlaceBet = async (_pos,_stake,wait='wait') => {
 //VerifyBetStake
 export const VerifyBetStake = async (_pos,_stake) => {
   try {
-      let findmsg,_found
-      if (_pos == "Big"){
-          findmsg = `42/user/taixiu,["taixiu",{"ownBets":{"big":${_stake}}`
-          _found = await utils.wsFindMessage(findmsg,5)
-       }
-
-       else if(_pos == "Small"){
-          findmsg = `42/user/taixiu,["taixiu",{"ownBets":{"small":${_stake}}`
-          _found = await utils.wsFindMessage(findmsg,5)
-       }
-      //  if(_found.Val==false){
-      //    console.log('ws message to trace bet choice',wsMessageReceived);
-      //  }
-       await utils.shouldBeEqual(_found.Val,true, `Verify bet choice : ${_pos} and stake : ${_stake} `)    
-   } catch (e) {
-      console.error(e)
-  }
+    let findmsg,_found
+    _pos = _pos.toLowerCase()
+    findmsg = `"${_pos}":${_stake}}`
+   _found = await utils.wsFindMessage(findmsg,3)
+     await utils.shouldBeEqual(_found.Val,true, `Verify bet choice : ${_pos} and stake : ${_stake} `)    
+ } catch (e) {
+    console.error(e)
+}
 }
 
 
@@ -281,9 +272,11 @@ export const IsSettle = async() => {
 //GetWinLossStatus
 export const GetWinLossStatus = async () => {
   try {
-      let _found = await utils.getWsMessage('42/user/taixiu,["taixiu",{"status":')
-      const res = String(_found).split("42/user/taixiu,");
-      const obj = JSON.parse(res[1]);
+    let _found = await utils.getWsMessage('"status":')
+    let res = String(_found).split("42/user/taixiu,");
+    res= (res[0].length>1) ? res[0] : res[1]
+    const obj = JSON.parse(res);
+    console.log(obj);
       let _result = jp.value(obj[1],`$..win`);
       let _gbetchoice = jp.value(obj[1],`$..winningByChoices`)
       let _betwin
@@ -306,8 +299,9 @@ export const GetWinLossStatus = async () => {
 export const GetSettleResult = async(_stake=null) => {
   let _time = new Date().toISOString()
   let _found = await utils.getWsMessage('42/user/taixiu,["taixiu",{"finish":{"result":')
-  const res = String(_found).split("42/user/taixiu,");
-  const obj = JSON.parse(res[1]);
+  let res = String(_found).split("42/user/taixiu,");
+  res= (res[0].length>1) ? res[0] : res[1]
+  const obj = JSON.parse(res);
   let _roundid = jp.value(obj[1],`$..roundId`);
   let _result = jp.query(obj[1],`$..result`);
   let _settleresult = jp.query(obj[1],`$..settlementResult`);

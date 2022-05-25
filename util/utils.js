@@ -11,6 +11,16 @@ const PNG = require('pngjs').PNG
 const jp = require('jsonpath')
 const sharp = require('sharp')
 sharp.cache({ files : 0 });
+const chai = require("chai");
+var msgpack = require("msgpack");
+var md5 = require("blueimp-md5");
+
+
+// generateMd5
+export const generateMd5 = async (_string) => {
+    let txt = md5(_string);
+    return txt;
+  };
 
 // Verify Message is existed
 const FindMessage = async(_mes) => {
@@ -24,9 +34,9 @@ const FindMessage = async(_mes) => {
         return false
     }
 }
-const getMessage = async(_mes) => {
+export const getMessage = async(_mes) => {
     try {
-        if(typeof wsMessageReceived !== 'undefined'){
+        if(typeof wsMessageReceived != 'undefined'){
             const _found = wsMessageReceived.filter(element => element.includes(_mes));
             // console.log(_found)
             if(_found.length !== 0) return _found.pop();
@@ -42,7 +52,6 @@ export const wsFindMessage = async(_mes,cfloop=config.setting.loop) => {
         let result
         for(let t = 0 ; t< cfloop ; t++){
             if(typeof wsMessageReceived !== 'undefined'){
-                // console.log(wsMessageReceived)
                 result = await FindMessage(_mes)
                 if( result === true ) return { Val : true , Err : { IsErr : false , ErrMess : ""}}
                 await sleep(500)
@@ -57,7 +66,6 @@ export const getWsMessage = async(_mes) => {
     try {
         let result
         for(let t = 0 ; t< config.setting.loop ; t++){
-                // console.log(wsMessageReceived)
                 result = await getMessage(_mes)
                 if(result !== null ) return result
                 await sleep(1000)
@@ -529,11 +537,15 @@ export const createWSConnect= async(wsurl, urlorigin)=>{
     client.onclose = ()=> {
       console.log('echo-protocol Client Closed');
     }
-    client.onmessage =(e)=> {
-      if (typeof e.data === 'string') {
-        wsmsgbs.push(e.data)
-      }
-    }
+    client.onmessage = (e) => {
+        //console.log(e.data,client.binaryType );
+        if (typeof e.data === "string") {
+          wsmsgbs.push(e.data);
+        } else {
+          let temp = msgpack.unpack(e.data);
+          wsmsgbs.push(JSON.stringify(temp.data));
+        }
+      };
     client.onopen = () =>{
       console.log('WebSocket Client Connected')
     }
@@ -541,15 +553,34 @@ export const createWSConnect= async(wsurl, urlorigin)=>{
   }
 
 // Check Websocket Mesage
-export const wshear = async(ws) =>{
-    if(isHear ===true) {
-        ws.on('framereceived', async msg => {
-            if(isHear ===true) {
-                wsMessageReceived.push(msg.payload)
-            } else { wsMessageReceived = [] }
-        });
+export const wshear = async (ws) => {
+    if (isHear === true) {
+      ws.on("framereceived", async (msg) => {
+        if (isHear === true) {
+          if (typeof msg.payload != "string") {
+            let temp = msgpack.unpack(msg.payload);
+            wsMessageReceived.push(JSON.stringify(temp.data));
+          } else {
+            wsMessageReceived.push(msg.payload);
+          }
+        } else {
+          wsMessageReceived = [];
+        }
+      });
+      ws.on("framesent", async (msg) => {
+        if (isHear === true) {
+          if (typeof msg.payload != "string") {
+            let temp = msgpack.unpack(msg.payload);
+            wsMessageSend.push(JSON.stringify(temp.data));
+          } else {
+            wsMessageSend.push(msg.payload);
+          }
+        } else {
+            wsMessageSend = [];
+        }
+      });
     }
-}
+  };
 
 // Open Listener Websocket Message
 export const wsHearMessageOn = async() => {
@@ -565,7 +596,8 @@ export const wsHearMessageOff = async() => {
 
 // Off Listener Websocket Message
 export const shouldBeEqual = async(_val,_expect,_mess="") => {
-    global.expect(_val,_mess).to.equal(_expect) 
+    global.expect(_val, _mess).to.eql(_expect);
+    // chai.assert.equal(_val,_expect,_mess)
 }
 
 
@@ -583,7 +615,7 @@ export const Login = async(_env,_game) => {
     }
     if(_env == 'cf_prod'){
         //select group currency
-        await clickEl('xpath=//input[@value="Submit"]')
+        await clickEl('text=Submit')
         await sleep(15000)     
     }
     // Verify go to Game Lobby Successfully
@@ -596,11 +628,14 @@ export const Login = async(_env,_game) => {
         await getSession()
     }
     expect(flag.Val,"Fail on Login GameLobby").to.be.true
-    
 }
 
 export const getDataJsonPath = async(_rawData, _jsonpath) => {
-    return jp.value(JSON.parse(_rawData),_jsonpath)
+    try {
+        return jp.value(JSON.parse(_rawData), _jsonpath);
+      } catch (error) {
+        console.log('getDataJsonPath',_rawData);
+      }
 }
 
 // Get Keys of Object By Value
@@ -752,10 +787,10 @@ export const wsClient = class {
 }
 
 export const getSession = async()=>{
-    const _rawData =  await getWsMessage('{"Authorized":true')
-    session = await getDataJsonPath(_rawData,'$..ss.ss')
-    username = await getDataJsonPath(_rawData,'$..ss.username')
-    name = await getDataJsonPath(_rawData,'$..user.name')
+    await sleep(5000)
+    const _rawData = wsMessageSend.filter(element => element.includes('{"ss":'));
+    session = await getDataJsonPath(_rawData,'$..ss')
+    username = await getDataJsonPath(_rawData,'$..username')
 }
 export const getName = async() =>{
     return await name
