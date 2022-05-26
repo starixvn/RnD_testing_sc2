@@ -163,13 +163,12 @@ const compareLastBetAndLastLogHistory = async(_result,_BetHistory) => {
     await utils.shouldBeEqual(_result.settlementResult.winningLines.count,_BetHistory.settlementResult.winningPaylines.count,"Verify winning paylines - count")
     await utils.shouldBeEqual(_result.betWin,_BetHistory.betWin,"Verify betWin")
 }
-export const verifyHistoryContent = async(_result) => {
-    // placebet to get new id
+export const verifyHistoryContent = async() => {
     await openHistory()
     await utils.sleep(5000)
-    await compareLastBetAndLastLogHistory(_result, await getLastHistory()) 
+    let _result = await utils.wsFindMessage('"HeroesSlot",{"history"')
+    expect(_result.Val).to.equal(true)
     await closeHistory()
 }
-
 
 
