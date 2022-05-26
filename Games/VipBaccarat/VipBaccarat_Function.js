@@ -43,22 +43,19 @@ export const openHistory = async() => {
 
 export const verifyHistoryPopup = async() => {
     await utils.sleep(1000)
-    // await utils.CaptureSubImageToFile(VipBaccaratLocator.History)
-    let flag = await utils.findImage(VipBaccaratLocator.History)
-    await utils.shouldBeEqual(flag.Val,true)
+    let res = await utils.wsFindMessage('"history"',20)
+    await utils.shouldBeEqual(res.Val, true,'Check History')
 }
 
 export const closeHistory = async() => {
     await utils.clickPos(VipBaccaratLocator.HistoryClose.x, VipBaccaratLocator.HistoryClose.y)
-    let _result = await utils.findImage(VipBaccaratLocator.Dealer)
-    expect(_result.Val).to.equal(true)
 }
 
 //Wait until new round
 export const waitUtilNewRound = async() => {
     wsMessageReceived = []
-    let _found = await utils.getWsMessage(remainingTime)
-    await utils.sleep(8000)
+    let _found = await utils.getWsMessage('{"remainingTime":45}')
+    await utils.sleep(10000)
 }
 
 export const selectChip = async(_chip=100)=>{
@@ -112,7 +109,6 @@ const getUserResult = async() => {
 //Place bet multiple choices and check settle
 export const verifySettlementMultipleChoices = async(_choices,_chip) => {
     await waitUtilNewRound()
-    await utils.sleep(3000)
     await selectChip(_chip)
     // Select All Choices
     for(let i of _choices){
@@ -130,7 +126,7 @@ export const verifySettlementMultipleChoices = async(_choices,_chip) => {
     // console.log('actual Balance: ' + currentBalance)
     let rs = (Math.abs(currentBalance-balance) <= 0.01) ? true : false;
     // console.log(Math.abs(currentBalance-balance))
-    await utils.shouldBeEqual(rs,true,"Error: expect actual balance ( "+currentBalance+" ) to equal : "+balance)
+    await utils.shouldBeEqual(rs,true,"Error: expect actual balance  "+currentBalance+" to equal : "+balance)
 } 
 
 const verifyChoiceClose = async() => {

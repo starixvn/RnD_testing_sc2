@@ -109,10 +109,9 @@ export const VerifyBetStake = async (_pos,_stake) => {
       let findmsg,_found
            _pos = _pos.toLowerCase()
           findmsg = `"${_pos}":${_stake}`
-          console.log(findmsg);
           _found = await utils.wsFindMessage(findmsg,5)
        if(_found.Val==false){
-         console.log('ws message to trace bet choice',wsMessageReceived);
+         console.log('ws message to trace bet choice');
        }
        await utils.shouldBeEqual(_found.Val,true, `Verify bet choice : ${_pos} and stake : ${_stake} `)    
    } catch (e) {
@@ -281,7 +280,6 @@ export const CheckSettleBalance = async() => {
   await utils.sleep(3000)
   let _afterbalance = await utils.getBalance()
   _beforebalance = _beforebalance +  _af.betwin
-  console.log(_af,_beforebalance,_afterbalance);
   await utils.shouldBeEqual(Math.round(_afterbalance * 100) / 100, Math.round(_beforebalance * 100) / 100,'Check Settle Balance')
 }
 

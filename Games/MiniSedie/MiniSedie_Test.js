@@ -155,6 +155,7 @@ describe('MiniSedie Game', ()=>{
   })
 
   it('TC_037_Full_Smoke_Verify History', async() => {
+    await MiniSedieFunc.waitUtilNewRound()
     await MiniSedieFunc.openHistory()
     await MiniSedieFunc.verifyHistoryPopup()
     await MiniSedieFunc.closeHistory()

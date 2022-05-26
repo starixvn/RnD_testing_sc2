@@ -596,6 +596,8 @@ export const wsHearMessageOff = async() => {
 
 // Off Listener Websocket Message
 export const shouldBeEqual = async(_val,_expect,_mess="") => {
+    _val = _val.toString()
+    _expect = _expect.toString()
     global.expect(_val, _mess).to.eql(_expect);
     // chai.assert.equal(_val,_expect,_mess)
 }

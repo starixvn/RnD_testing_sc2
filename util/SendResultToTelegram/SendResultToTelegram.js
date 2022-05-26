@@ -16,7 +16,7 @@ describe('Send Message', ()=>{
             .send({
                 chat_id: -605245129,
                 parse_mode: "Markdown",
-                text: `💻 ${env}: ${result.testSuiteName}:  ${result.totalfailed} ❌ [LINK](https://git3.nexdev.net/RnD/testing/mocha-playwright/-/pipelines/${args.Job}) `
+                text: `💻 ${env}: ${result.testSuiteName}:  ${result.totalfailed} ❌ [LINK](https://git3.nexdev.net/RnD/testing/sc2/-/pipelines/${args.Job}) `
             }).end( async(err,res)=>{
                 expect(res).to.have.status(200)})  
         }

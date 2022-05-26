@@ -166,6 +166,7 @@ describe('VipSedie Game', ()=>{
   })
 
   it('TC_037_Full_Smoke_Verify History', async() => {
+    await VipSedieFunc.waitUtilNewRound()
     await VipSedieFunc.openHistory()
     await VipSedieFunc.verifyHistoryPopup()
     await VipSedieFunc.closeHistory()

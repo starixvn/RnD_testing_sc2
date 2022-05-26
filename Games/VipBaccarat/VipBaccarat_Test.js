@@ -29,6 +29,7 @@ describe('VipBaccarat Game', ()=>{
   })
   
   it('TC_037_Full_Smoke_Verify History', async() => {
+    await VipBaccaratFunc.waitUtilNewRound()
     await VipBaccaratFunc.openHistory()
     await VipBaccaratFunc.verifyHistoryPopup()
     await VipBaccaratFunc.closeHistory()
