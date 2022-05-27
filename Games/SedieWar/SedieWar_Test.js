@@ -290,6 +290,7 @@ describe('SedieWar Game', ()=>{
   })
 
   it('TC_067_Full_Smoke_Verify History', async() => {
+    await SedieWarFunc.waitUtilNewRound()
     await SedieWarFunc.openHistory()
     await SedieWarFunc.verifyHistoryPopup()
     await SedieWarFunc.closeHistory()

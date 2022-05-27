@@ -410,8 +410,9 @@ export const verifyDBOne = async(_resultOnWeb)=>{
 //Wait until new round
 export const waitUtilNewRound = async() => {
     wsMessageReceived = []
-    let _found = await utils.getWsMessage('42/user/vipsediewar,["VipSedieWar",{"remainingTime":54}]')
-    await utils.sleep(9000)
+    let _found = await utils.getWsMessage('{"remainingTime":54}')
+    await utils.sleep(10000)
+    console.log('waitUtilNewRound', _found);
   }
 
 
